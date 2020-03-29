@@ -1,0 +1,142 @@
+{
+  "en": {
+    "header": {
+      "title": "PAN COVID-19",
+      "home": "Home",
+      "compare": "Compare",
+      "about": "About"
+    },
+    "mainPage": {
+      "total": "Total",
+      "confirmed": "Confirmed",
+      "recovered": "Recovered",
+      "deaths": "Deaths",
+      "graphTitle": "Graph by Daily Values",
+      "country": "Country",
+      "searchCountry": "Search Country",
+      "exportData": "Export Data",
+      "paginationText": "Navigate to page",
+      "pageTitle": "Homepage"
+    },
+    "countryPage": {
+      "total": "Total",
+      "confirmed": "Confirmed",
+      "recovered": "Recovered",
+      "deaths": "Deaths",
+      "graphTitle": "Graph by Daily Values",
+      "country": "Country",
+      "date": "Date",
+      "exportData": "Export Data",
+      "paginationText": "Navigate to page"
+    },
+    "comparePage": {
+      "pageHeader": "Compare Countries",
+      "dateRangeHeader": "Date Range",
+      "startDate": "Start Date",
+      "endDate": "End Date",
+      "countryHeader": "Countries",
+      "country": "Country",
+      "selectCountry": "Select Country",
+      "formButtonText": "Compare Countries",
+      "warningCountry": "You should select at least two countries!",
+      "warningDate": "Date values can't be null!",
+      "warningDateRange": "You shouldn't select dates earlier than 22/01/2020 !",
+      "warningDateToday": "You can't select future dates!",
+      "warningDateInvalid": "Start date can't be later than end date!",
+      "confirmed": "Confirmed",
+      "recovered": "Recovered",
+      "deaths": "Deaths",
+      "dailyCompareHeader": "Daily Comparison",
+      "firstCaseCompareHeader": "Comparison After First Cases",
+      "day": "Day",
+      "firstCaseEndText": "NO CASE"
+    },
+    "aboutPage": {
+      "pageHeader": "About",
+      "aboutText1": "You can find statistics of confirmed, deaths and recovered COVID-19 cases in this application for every day since 22/01/2020.",
+      "aboutText2": "The application data is updated daily.",
+      "creditHeader": "Credits",
+      "creditText": "This application uses the data provided by JHU CSSE."
+    },
+    "footer": {
+      "homePage": "Homepage",
+      "about": "About",
+      "text": "PAN COVID-19 © 2020",
+      "lastUpdated": "Last Updated"
+    },
+    "notFoundPage": {
+      "title": "Page Not Found",
+      "text": "Sorry, this page does not exist!"
+    }
+  },
+  "tr": {
+    "header": {
+      "title": "PAN COVID-19",
+      "home": "Anasayfa",
+      "compare": "Karşılaştır",
+      "about": "Hakkında"
+    },
+    "mainPage": {
+      "total": "Toplam",
+      "confirmed": "Vaka",
+      "recovered": "İyileşme",
+      "deaths": "Vefat",
+      "graphTitle": "Günlük Değerlere Göre Grafik",
+      "country": "Ülke",
+      "searchCountry": "Ülke Ara",
+      "exportData": "Verileri Dışa Aktar",
+      "paginationText": "Sayfaya git",
+      "pageTitle": "Anasayfa"
+    },
+    "countryPage": {
+      "total": "Toplam",
+      "confirmed": "Vaka",
+      "recovered": "İyileşme",
+      "deaths": "Vefat",
+      "graphTitle": "Günlük Değerlere Göre Grafik",
+      "country": "Ülke",
+      "date": "Tarih",
+      "exportData": "Verileri Dışa Aktar",
+      "paginationText": "Sayfaya git"
+    },
+    "comparePage": {
+      "pageHeader": "Ülkeleri Karşılaştır",
+      "dateRangeHeader": "Tarih Aralığı",
+      "startDate": "Başlangıç Tarihi",
+      "endDate": "Bitiş Tarihi",
+      "countryHeader": "Ülkeler",
+      "country": "Ülke",
+      "selectCountry": "Ülke Seçin",
+      "formButtonText": "Ülkeleri Karşılaştır",
+      "warningCountry": "En azından iki ülke seçmelisiniz!",
+      "warningDate": "Tarih değerleri boş olamaz!",
+      "warningDateRange": "22/01/2020 tarihinden önce olan bir tarih seçmemelisiniz!",
+      "warningDateToday": "Seçilen tarihler bugünden büyük olamaz!",
+      "warningDateInvalid": "Başlangıç tarihi bitiş tarihinden büyük olamaz!",
+      "confirmed": "Vaka",
+      "recovered": "İyileşme",
+      "deaths": "Vefat",
+      "dailyCompareHeader": "Günlük Karşılaştırma",
+      "firstCaseCompareHeader": "İlk Vakalardan İtibaren Karşılaştırma",
+      "day": "Gün",
+      "firstCaseEndText": "VAKA YOK"
+    },
+    "aboutPage": {
+      "pageHeader": "Hakkında",
+      "aboutText1": "22/01/2020 tarihinden beri olan COVID-19 vaka, iyileşme ve vefat istatistiklerini bu uygulamadan takip edebilirsiniz.",
+      "aboutText2": "Uygulama verisi günlük olarak güncellenmektedir.",
+      "creditHeader": "Referanslar",
+      "creditText": "Bu uygulamada JHU CSSE tarafından sağlanan veriler kullanılmaktadır."
+    },
+    "footer": {
+      "homePage": "Anasayfa",
+      "about": "Hakkında",
+      "text": "PAN COVID-19 © 2020",
+      "lastUpdated": "Son Güncelleme"
+    },
+    "notFoundPage": {
+      "title": "Sayfa Bulunamadı",
+      "text": "Üzgünüm, bu sayfa mevcut değil!"
+    }
+  }
+}
