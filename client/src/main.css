@@ -1,0 +1,34 @@
+#dataMap {
+  height: 300px;
+  width: 100%;
+}
+
+.general-data {
+  height: 330px;
+  width: 100%;
+}
+
+.table-row:hover {
+  background-color: #f9fafb !important;
+  cursor: pointer;
+}
+
+.hide-element {
+  display: none !important;
+}
+
+.graph-container {
+  height: 300px;
+  width: 100%;
+}
+
+.pagination-item:hover {
+  background-color: #f9fafb !important;
+  cursor: pointer;
+}
+
+.disabled-pagination-item {
+  pointer-events: none !important ;
+  opacity: 0.5 !important;
+  background: #ccc !important;
+}
