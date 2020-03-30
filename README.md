@@ -9,6 +9,7 @@ COVID-19 Statistics Dashboard
 * Total data for all countries and daily data for every country can be exported as CSV
 * Charts
 * Map
+* Supports Turkish and English languages (based on browser language)
 
 ## Built With
 
