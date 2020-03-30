@@ -12,9 +12,10 @@ COVID-19 Statistics Dashboard
 
 ## Built With
 
-* [Node.js](https://nodejs.org/) - Node.js® is a JavaScript runtime built on Chrome's V8 JavaScript engine
-* [React](https://reactjs.org/) - A JavaScript library for building user interfaces
-* [Python3](https://www.python.org/) - Used to generate JSON files from CSV files
+* [Node.js](https://nodejs.org/) - Node.js® is a JavaScript runtime built on Chrome's V8 JavaScript engine.
+* [React](https://reactjs.org/) - A JavaScript library for building user interfaces.
+* [Python3](https://www.python.org/) - Python is a programming language that lets you work quickly
+and integrate systems more effectively.
 
 ## License
 
