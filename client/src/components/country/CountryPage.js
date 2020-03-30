@@ -27,11 +27,19 @@ export default class CountryPage extends Component {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
 
-    const dateItems = [];
+    let dateItems = [];
+
+    let firstDate = '';
 
     for (let date in this.state.cdata[0].data) {
       dateItems.push({ date, ...this.state.cdata[0].data[date] });
+
+      if (firstDate === '' && this.state.cdata[0].data[date].confirmed > 0) {
+        firstDate = date;
+      }
     }
+
+    dateItems = dateItems.filter(ddata => ddata.date >= firstDate);
 
     const sortedDateItems = [...dateItems].sort((a, b) =>
       b.date > a.date ? 1 : -1
