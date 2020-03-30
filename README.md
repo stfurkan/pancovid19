@@ -1,4 +1,4 @@
-# pancovid19
+# PAN COVID-19
 COVID-19 Statistics Dashboard
 
 ## Features
