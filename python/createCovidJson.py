@@ -291,6 +291,17 @@ for country in countryDict:
 
     del countryDict[country]["count"]
 
+# Fix locations for UK, Netherlands and France
+countryDict["United Kingdom"]["latitude"] = 55.3781
+countryDict["United Kingdom"]["longitude"] = -3.436
+
+countryDict["Netherlands"]["latitude"] = 52.1326
+countryDict["Netherlands"]["longitude"] = 5.2913
+
+countryDict["France"]["latitude"] = 46.2276
+countryDict["France"]["longitude"] = 2.2137
+
+
 countryList = []
 for key in countryDict.keys():
     countryList.append(countryDict[key])
