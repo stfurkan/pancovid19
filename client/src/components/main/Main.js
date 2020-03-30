@@ -80,6 +80,9 @@ export default class Main extends Component {
     let yesterday = (d => new Date(d.setDate(d.getDate() - 1)))(new Date())
       .toISOString()
       .split('T')[0];
+    let previousDay = (d => new Date(d.setDate(d.getDate() - 2)))(new Date())
+      .toISOString()
+      .split('T')[0];
 
     let sortedItems = [...covidData];
 
@@ -163,6 +166,15 @@ export default class Main extends Component {
                 ? 1
                 : -1
             );
+          } else {
+            if (sortedItems[0].data[previousDay]) {
+              sortedItems = [...sortedItems].sort((a, b) =>
+                b.data[previousDay]['confirmed'] >
+                a.data[previousDay]['confirmed']
+                  ? 1
+                  : -1
+              );
+            }
           }
         }
 
@@ -189,6 +201,15 @@ export default class Main extends Component {
                 ? 1
                 : -1
             );
+          } else {
+            if (sortedItems[0].data[previousDay]) {
+              sortedItems = [...sortedItems].sort((a, b) =>
+                a.data[previousDay]['confirmed'] >
+                b.data[previousDay]['confirmed']
+                  ? 1
+                  : -1
+              );
+            }
           }
         }
         this.setState({
@@ -214,6 +235,15 @@ export default class Main extends Component {
                 ? 1
                 : -1
             );
+          } else {
+            if (sortedItems[0].data[previousDay]) {
+              sortedItems = [...sortedItems].sort((a, b) =>
+                b.data[previousDay]['confirmed'] >
+                a.data[previousDay]['confirmed']
+                  ? 1
+                  : -1
+              );
+            }
           }
         }
         this.setState({
@@ -242,6 +272,15 @@ export default class Main extends Component {
                 ? 1
                 : -1
             );
+          } else {
+            if (sortedItems[0].data[previousDay]) {
+              sortedItems = [...sortedItems].sort((a, b) =>
+                b.data[previousDay]['recovered'] >
+                a.data[previousDay]['recovered']
+                  ? 1
+                  : -1
+              );
+            }
           }
         }
 
@@ -268,6 +307,15 @@ export default class Main extends Component {
                 ? 1
                 : -1
             );
+          } else {
+            if (sortedItems[0].data[previousDay]) {
+              sortedItems = [...sortedItems].sort((a, b) =>
+                a.data[previousDay]['recovered'] >
+                b.data[previousDay]['recovered']
+                  ? 1
+                  : -1
+              );
+            }
           }
         }
         this.setState({
@@ -293,6 +341,15 @@ export default class Main extends Component {
                 ? 1
                 : -1
             );
+          } else {
+            if (sortedItems[0].data[previousDay]) {
+              sortedItems = [...sortedItems].sort((a, b) =>
+                b.data[previousDay]['recovered'] >
+                a.data[previousDay]['recovered']
+                  ? 1
+                  : -1
+              );
+            }
           }
         }
         this.setState({
@@ -319,6 +376,14 @@ export default class Main extends Component {
             sortedItems = [...sortedItems].sort((a, b) =>
               b.data[yesterday]['deaths'] > a.data[yesterday]['deaths'] ? 1 : -1
             );
+          } else {
+            if (sortedItems[0].data[previousDay]) {
+              sortedItems = [...sortedItems].sort((a, b) =>
+                b.data[previousDay]['deaths'] > a.data[previousDay]['deaths']
+                  ? 1
+                  : -1
+              );
+            }
           }
         }
 
@@ -343,6 +408,14 @@ export default class Main extends Component {
             sortedItems = [...sortedItems].sort((a, b) =>
               a.data[yesterday]['deaths'] > b.data[yesterday]['deaths'] ? 1 : -1
             );
+          } else {
+            if (sortedItems[0].data[previousDay]) {
+              sortedItems = [...sortedItems].sort((a, b) =>
+                a.data[previousDay]['deaths'] > b.data[previousDay]['deaths']
+                  ? 1
+                  : -1
+              );
+            }
           }
         }
         this.setState({
@@ -366,6 +439,14 @@ export default class Main extends Component {
             sortedItems = [...sortedItems].sort((a, b) =>
               b.data[yesterday]['deaths'] > a.data[yesterday]['deaths'] ? 1 : -1
             );
+          } else {
+            if (sortedItems[0].data[previousDay]) {
+              sortedItems = [...sortedItems].sort((a, b) =>
+                b.data[previousDay]['deaths'] > a.data[previousDay]['deaths']
+                  ? 1
+                  : -1
+              );
+            }
           }
         }
         this.setState({
@@ -390,6 +471,9 @@ export default class Main extends Component {
     let yesterday = (d => new Date(d.setDate(d.getDate() - 1)))(new Date())
       .toISOString()
       .split('T')[0];
+    let previousDay = (d => new Date(d.setDate(d.getDate() - 2)))(new Date())
+      .toISOString()
+      .split('T')[0];
 
     let totalConfirmed = 0;
     let totalRecovered = 0;
@@ -410,6 +494,12 @@ export default class Main extends Component {
           confirmed = celem.data[yesterday]['confirmed'];
           recovered = celem.data[yesterday]['recovered'];
           deaths = celem.data[yesterday]['deaths'];
+        } else {
+          if (celem.data[previousDay]) {
+            confirmed = celem.data[previousDay]['confirmed'];
+            recovered = celem.data[previousDay]['recovered'];
+            deaths = celem.data[previousDay]['deaths'];
+          }
         }
       }
 
@@ -440,6 +530,12 @@ export default class Main extends Component {
           confirmed = celem.data[yesterday]['confirmed'];
           recovered = celem.data[yesterday]['recovered'];
           deaths = celem.data[yesterday]['deaths'];
+        } else {
+          if (celem.data[previousDay]) {
+            confirmed = celem.data[previousDay]['confirmed'];
+            recovered = celem.data[previousDay]['recovered'];
+            deaths = celem.data[previousDay]['deaths'];
+          }
         }
       }
 

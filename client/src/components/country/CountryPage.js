@@ -73,6 +73,9 @@ export default class CountryPage extends Component {
     let yesterday = (d => new Date(d.setDate(d.getDate() - 1)))(new Date())
       .toISOString()
       .split('T')[0];
+    let previousDay = (d => new Date(d.setDate(d.getDate() - 2)))(new Date())
+      .toISOString()
+      .split('T')[0];
 
     let totalConfirmed = 0;
     let totalRecovered = 0;
@@ -91,6 +94,12 @@ export default class CountryPage extends Component {
           confirmed = cdata.data[date].confirmed;
           recovered = cdata.data[date].recovered;
           deaths = cdata.data[date].deaths;
+        } else {
+          if (date === previousDay) {
+            confirmed = cdata.data[date].confirmed;
+            recovered = cdata.data[date].recovered;
+            deaths = cdata.data[date].deaths;
+          }
         }
       }
 
