@@ -19,12 +19,17 @@ export default class Main extends Component {
       searchCountry: '',
       graph: true,
       sorted: {
-        country: 1,
+        country: 0,
         confirmed: 0,
         recovered: 0,
         deaths: 0
       }
     };
+  }
+
+  componentDidMount() {
+    // Default sort by confirmed cases
+    this.onClickSort('confirmed');
   }
 
   componentDidUpdate(pp, ps) {
