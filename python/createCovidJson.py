@@ -262,7 +262,7 @@ for row in readerRecovered:
             cnt = cnt + 1
 
 
-deathCsv = open(fildeDir + '/datasets/time_series_covid19_deaths_global.csv')
+deathCsv = open(fileDir + '/datasets/time_series_covid19_deaths_global.csv')
 readerDeath = csv.reader(deathCsv)
 
 for row in readerDeath:
