@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import ReactDOMServer from 'react-dom/server';
-import { BrowserRouter, Link } from 'react-router-dom';
+import { HashRouter, Link } from 'react-router-dom';
 import L from 'leaflet';
 
 const PopupContent = props => (
   <div className="ui list">
     <div className="item">
       <b>{props.lang.country}:</b>{' '}
-      <BrowserRouter>
+      <HashRouter>
         <Link to={`/country/${props.country}`}>{props.countryName}</Link>
-      </BrowserRouter>
+      </HashRouter>
     </div>
     <div className="item">
       <b>{props.lang.confirmed}:</b> {props.confirmed}
