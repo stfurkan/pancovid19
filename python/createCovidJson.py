@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 
-import os
 import csv
 import json
 import datetime
@@ -183,11 +182,9 @@ countryTr = {"Afghanistan": "Afganistan",
 "Zimbabwe": "Zimbabve"
 }
 
-fileDir = os.path.dirname(os.path.realpath('__file__'))
-
 countryDict = {}
 
-confirmedCsv = open(os.path.join(fileDir,'python/datasets/time_series_covid19_confirmed_global.csv'))
+confirmedCsv = open('datasets/time_series_covid19_confirmed_global.csv')
 readerConfirmed = csv.reader(confirmedCsv)
 
 for row in readerConfirmed:
@@ -239,7 +236,7 @@ for row in readerConfirmed:
             cnt = cnt + 1
 
 
-recoveredCsv = open(os.path.join(fileDir, 'python/datasets/time_series_covid19_recovered_global.csv'))
+recoveredCsv = open('datasets/time_series_covid19_recovered_global.csv')
 readerRecovered = csv.reader(recoveredCsv)
 
 for row in readerRecovered:
@@ -262,7 +259,7 @@ for row in readerRecovered:
             cnt = cnt + 1
 
 
-deathCsv = open(os.path.join(fileDir,'python/datasets/time_series_covid19_deaths_global.csv'))
+deathCsv = open('datasets/time_series_covid19_deaths_global.csv')
 readerDeath = csv.reader(deathCsv)
 
 for row in readerDeath:
