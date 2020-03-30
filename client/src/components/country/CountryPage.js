@@ -82,30 +82,23 @@ export default class CountryPage extends Component {
     let totalDeaths = 0;
 
     for (let date in cdata.data) {
-      let confirmed = 0;
-      let recovered = 0;
-      let deaths = 0;
       if (date === today) {
-        confirmed = cdata.data[date].confirmed;
-        recovered = cdata.data[date].recovered;
-        deaths = cdata.data[date].deaths;
+        totalConfirmed = cdata.data[date].confirmed;
+        totalRecovered = cdata.data[date].recovered;
+        totalDeaths = cdata.data[date].deaths;
       } else {
         if (date === yesterday) {
-          confirmed = cdata.data[date].confirmed;
-          recovered = cdata.data[date].recovered;
-          deaths = cdata.data[date].deaths;
+          totalConfirmed = cdata.data[date].confirmed;
+          totalRecovered = cdata.data[date].recovered;
+          totalDeaths = cdata.data[date].deaths;
         } else {
           if (date === previousDay) {
-            confirmed = cdata.data[date].confirmed;
-            recovered = cdata.data[date].recovered;
-            deaths = cdata.data[date].deaths;
+            totalConfirmed = cdata.data[date].confirmed;
+            totalRecovered = cdata.data[date].recovered;
+            totalDeaths = cdata.data[date].deaths;
           }
         }
       }
-
-      totalConfirmed += confirmed;
-      totalRecovered += recovered;
-      totalDeaths += deaths;
     }
 
     let countryName;
