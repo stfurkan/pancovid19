@@ -20,22 +20,6 @@ function Footer({ lang, lastUpdated }) {
           </Link>
           <a
             className="item"
-            href="https://twitter.com/pancovid19"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <i className="twitter icon"></i>
-          </a>
-          <a
-            className="item"
-            href="https://www.instagram.com/pancovid19"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <i className="instagram icon"></i>
-          </a>
-          <a
-            className="item"
             href="https://www.github.com/stfurkan/pancovid19"
             target="_blank"
             rel="noopener noreferrer"
