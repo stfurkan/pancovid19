@@ -27,6 +27,9 @@ export default class Map extends Component {
     let yesterday = (d => new Date(d.setDate(d.getDate() - 1)))(new Date())
       .toISOString()
       .split('T')[0];
+    let previousDay = (d => new Date(d.setDate(d.getDate() - 2)))(new Date())
+      .toISOString()
+      .split('T')[0];
 
     const { covidData } = this.props;
     covidData.forEach(celem => {
@@ -42,6 +45,12 @@ export default class Map extends Component {
           confirmed = celem.data[yesterday]['confirmed'];
           recovered = celem.data[yesterday]['recovered'];
           deaths = celem.data[yesterday]['deaths'];
+        } else {
+          if (celem.data[previousDay]) {
+            confirmed = celem.data[previousDay]['confirmed'];
+            recovered = celem.data[previousDay]['recovered'];
+            deaths = celem.data[previousDay]['deaths'];
+          }
         }
       }
 
