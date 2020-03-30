@@ -1,5 +1,27 @@
 import React, { Component } from 'react';
+import ReactDOMServer from 'react-dom/server';
+import { BrowserRouter, Link } from 'react-router-dom';
 import L from 'leaflet';
+
+const PopupContent = props => (
+  <div className="ui list">
+    <div className="item">
+      <b>{props.lang.country}:</b>{' '}
+      <BrowserRouter>
+        <Link to={`/country/${props.country}`}>{props.countryName}</Link>
+      </BrowserRouter>
+    </div>
+    <div className="item">
+      <b>{props.lang.confirmed}:</b> {props.confirmed}
+    </div>
+    <div className="item">
+      <b>{props.lang.recovered}:</b> {props.recovered}
+    </div>
+    <div className="item">
+      <b>{props.lang.deaths}:</b> {props.deaths}
+    </div>
+  </div>
+);
 
 export default class Map extends Component {
   mapRef = React.createRef();
@@ -63,23 +85,20 @@ export default class Map extends Component {
         countryName = celem.country;
       }
 
+      let popupContentNode = (
+        <PopupContent
+          lang={lang}
+          country={celem.country}
+          countryName={countryName}
+          confirmed={confirmed}
+          recovered={recovered}
+          deaths={deaths}
+        />
+      );
+      let popupContentHtml = ReactDOMServer.renderToString(popupContentNode);
+
       L.marker([celem.latitude, celem.longitude])
-        .bindPopup(
-          `<div class="ui list">
-        <div class="item">
-          <b>${lang.country}:</b> ${countryName}
-        </div>
-        <div class="item">
-          <b>${lang.confirmed}:</b> ${confirmed}
-        </div>
-        <div class="item">
-          <b>${lang.recovered}:</b> ${recovered}
-        </div>
-        <div class="item">
-          <b>${lang.deaths}:</b> ${deaths}
-        </div>
-      </div>`
-        )
+        .bindPopup(popupContentHtml)
         .addTo(this.map);
     });
   }
