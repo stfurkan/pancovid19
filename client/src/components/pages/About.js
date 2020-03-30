@@ -12,6 +12,16 @@ export default function About({ lang }) {
           <div className="ui segment raised">
             <p>{lang.aboutText1}</p>
             <p>{lang.aboutText2}</p>
+            <p>
+              {lang.codedBy}{' '}
+              <a
+                href="https://www.linkedin.com/in/s-furkan-teke-50758513b"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Furkan
+              </a>
+            </p>
           </div>
           <div className="ui segment raised">
             <h4 className="ui dividing header">{lang.creditHeader}</h4>

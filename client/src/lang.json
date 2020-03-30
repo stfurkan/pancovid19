@@ -55,6 +55,7 @@
       "pageHeader": "About",
       "aboutText1": "You can find statistics of confirmed, deaths and recovered COVID-19 cases in this application for every day since 22/01/2020.",
       "aboutText2": "The application data is updated daily.",
+      "codedBy": "Coded by",
       "creditHeader": "Credits",
       "creditText": "This application uses the data provided by JHU CSSE."
     },
@@ -125,6 +126,7 @@
       "pageHeader": "Hakkında",
       "aboutText1": "22/01/2020 tarihinden beri olan COVID-19 vaka, iyileşme ve vefat istatistiklerini bu uygulamadan takip edebilirsiniz.",
       "aboutText2": "Uygulama verisi günlük olarak güncellenmektedir.",
+      "codedBy": "Kodlayan",
       "creditHeader": "Referanslar",
       "creditText": "Bu uygulamada JHU CSSE tarafından sağlanan veriler kullanılmaktadır."
     },
