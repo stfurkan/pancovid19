@@ -16,10 +16,19 @@ export default class Country extends Component {
           String(cdata.country).toLowerCase() ===
           String(this.props.match.params.countryName).toLowerCase()
       ),
+      dateItems: [],
+      sortedDateItems: [],
       pageList: [],
       pageOfItems: [],
       graphData: [],
-      graph: true
+      graph: true,
+      startDate: new Date(2020, 0, 22).toISOString().split('T')[0],
+      endDate: new Date().toISOString().split('T')[0],
+      warningDate: false,
+      warningDateRange: false,
+      warningDateToday: false,
+      warningDateInvalid: false,
+      filtered: false
     };
   }
 
@@ -51,10 +60,112 @@ export default class Country extends Component {
     );
 
     this.setState({
+      dateItems: [...dateItems],
+      sortedDateItems: [...sortedDateItems],
       graphData: [...dateItems],
       pageList: [...sortedDateItems]
     });
   }
+
+  onFilter = e => {
+    e.preventDefault();
+
+    const { dateItems, startDate, endDate } = this.state;
+
+    // Refresh warning states
+    this.setState({
+      warningDate: false,
+      warningDateRange: false,
+      warningDateToday: false,
+      warningDateInvalid: false
+    });
+
+    let today = new Date();
+    let firstDate = new Date(2020, 0, 21);
+
+    let tempStartDate = new Date(startDate);
+    let tempEndDate = new Date(endDate);
+
+    if (
+      startDate === '' ||
+      endDate === '' ||
+      tempStartDate < firstDate ||
+      tempEndDate < firstDate ||
+      tempStartDate > today ||
+      tempEndDate > today ||
+      tempStartDate > tempEndDate
+    ) {
+      // Scroll the top of the page
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+
+      this.onClearFilter();
+
+      // If user didn't specify start or end date
+      if (startDate === '' || endDate === '') {
+        this.setState({
+          warningDate: true
+        });
+      }
+
+      // If one of the dates earlier than data start date (22/01/2020)
+      if (tempStartDate < firstDate || tempEndDate < firstDate) {
+        this.setState({
+          warningDateRange: true
+        });
+      }
+
+      // If start or end date later than today's date
+      if (tempStartDate > today || tempEndDate > today) {
+        this.setState({
+          warningDateToday: true
+        });
+      }
+
+      // If start date is later than end date
+      if (tempStartDate > tempEndDate) {
+        this.setState({
+          warningDateInvalid: true
+        });
+      }
+    } else {
+      // Scroll to top of the page
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+
+      let newDateItems = [...dateItems].filter(
+        ddata => ddata.date >= startDate && ddata.date <= endDate
+      );
+
+      let newSortedDateItems = [...newDateItems].sort((a, b) =>
+        b.date > a.date ? 1 : -1
+      );
+
+      this.setState({
+        graphData: [...newDateItems],
+        pageList: [...newSortedDateItems],
+        warningDate: false,
+        warningDateRange: false,
+        warningDateToday: false,
+        warningDateInvalid: false,
+        filtered: true
+      });
+    }
+  };
+
+  onClearFilter = () => {
+    this.setState({
+      graphData: [...this.state.dateItems],
+      pageList: [...this.state.sortedDateItems],
+      filtered: false
+    });
+  };
+
+  onChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  };
 
   onChangePage = pageOfItems => {
     // update state with new page of items
@@ -123,9 +234,110 @@ export default class Country extends Component {
     }
 
     const { lang } = this.props;
+    const {
+      warningDate,
+      warningDateInvalid,
+      warningDateRange,
+      warningDateToday,
+      filtered
+    } = this.state;
     return (
       <div className="ui container">
         <PageTitle title={countryName} />
+        <div
+          className={
+            warningDate ||
+            warningDateInvalid ||
+            warningDateRange ||
+            warningDateToday ||
+            filtered
+              ? ''
+              : 'hide-element'
+          }
+        >
+          <div
+            className={warningDate ? 'ui red segment raised' : 'hide-element'}
+          >
+            <b>
+              <i className="exclamation triangle icon"></i>
+              {lang.warningDate}
+            </b>
+            <div
+              className="circular ui icon red button right aligned"
+              onClick={() => this.setState({ warningDate: false })}
+            >
+              <i className="close icon"></i>
+            </div>
+          </div>
+
+          <div
+            className={
+              warningDateRange ? 'ui red segment raised' : 'hide-element'
+            }
+          >
+            <b>
+              <i className="exclamation triangle icon"></i>
+              {lang.warningDateRange}
+            </b>
+            <div
+              className="circular ui icon red button right aligned"
+              onClick={() => this.setState({ warningDateRange: false })}
+            >
+              <i className="close icon"></i>
+            </div>
+          </div>
+
+          <div
+            className={
+              warningDateToday ? 'ui red segment raised' : 'hide-element'
+            }
+          >
+            <b>
+              <i className="exclamation triangle icon"></i>
+              {lang.warningDateToday}
+            </b>
+            <div
+              className="circular ui icon red button right aligned"
+              onClick={() => this.setState({ warningDateToday: false })}
+            >
+              <i className="close icon"></i>
+            </div>
+          </div>
+
+          <div
+            className={
+              warningDateInvalid ? 'ui red segment raised' : 'hide-element'
+            }
+          >
+            <b>
+              <i className="exclamation triangle icon"></i>
+              {lang.warningDateInvalid}
+            </b>
+            <div
+              className="circular ui icon red button right aligned"
+              onClick={() => this.setState({ warningDateInvalid: false })}
+            >
+              <i className="close icon"></i>
+            </div>
+          </div>
+
+          <div
+            className={filtered ? 'ui green segment raised' : 'hide-element'}
+          >
+            <b>
+              <i className="thumbs up outline icon"></i>
+              {lang.filterApplied}
+            </b>
+            <div
+              className="ui green button right aligned"
+              onClick={() => this.onClearFilter()}
+            >
+              {lang.clearFilter}
+            </div>
+          </div>
+          <br />
+        </div>
+
         <div>
           <h1 className="ui top attached header">{countryName}</h1>
           <div className="ui attached segment">
@@ -175,16 +387,6 @@ export default class Country extends Component {
         </div>
 
         <br />
-
-        <div>
-          <div className="ui segment">
-            <div className="ui grid three wide column">
-              <div className="column">START DATE</div>
-              <div className="column">END DATE</div>
-              <div className="column">BUTTON</div>
-            </div>
-          </div>
-        </div>
 
         <div>
           <h3
@@ -259,6 +461,53 @@ export default class Country extends Component {
               </tr>
             </tfoot>
           </table>
+        </div>
+
+        <div>
+          <div className="ui segment">
+            <form className="ui form">
+              <h4 className="ui dividing header left aligned">
+                {lang.filterTitle}
+              </h4>
+              <div className="field">
+                <div className="two fields">
+                  <div className="field">
+                    <label>{lang.startDate}</label>
+                    <input
+                      type="date"
+                      min="2020-01-22"
+                      name="startDate"
+                      onChange={e => this.onChange(e)}
+                      value={this.state.startDate}
+                    />
+                  </div>
+                  <div className="field">
+                    <label>{lang.endDate}</label>
+                    <input
+                      type="date"
+                      min="2020-01-22"
+                      name="endDate"
+                      onChange={e => this.onChange(e)}
+                      value={this.state.endDate}
+                    />
+                  </div>
+                </div>
+
+                <div
+                  className="ui primary button"
+                  onClick={e => this.onFilter(e)}
+                >
+                  {lang.filter}
+                </div>
+                <div
+                  className="ui green button"
+                  onClick={() => this.onClearFilter()}
+                >
+                  {lang.clearFilter}
+                </div>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     );
