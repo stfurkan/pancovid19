@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
 
 import Header from './components/layouts/Header';
 import Footer from './components/layouts/Footer';
@@ -34,59 +35,63 @@ function App() {
   }
 
   return (
-    <Router>
-      <div className="ui grid centered">
-        <Header lang={selectedLanguage.header} />
-        <Switch>
-          <Route
-            exact
-            path="/"
-            component={props => (
-              <Main
-                {...props}
-                covidData={covidDataSorted}
-                graphData={graphData}
-                lang={selectedLanguage.mainPage}
-              />
-            )}
+    <HelmetProvider>
+      <Router>
+        <div className="ui grid centered">
+          <Header lang={selectedLanguage.header} />
+          <Switch>
+            <Route
+              exact
+              path="/"
+              component={props => (
+                <Main
+                  {...props}
+                  covidData={covidDataSorted}
+                  graphData={graphData}
+                  lang={selectedLanguage.mainPage}
+                />
+              )}
+            />
+            <Route
+              exact
+              path="/country/:countryName"
+              component={props => (
+                <Country
+                  {...props}
+                  covidData={covidDataSorted}
+                  lang={selectedLanguage.countryPage}
+                />
+              )}
+            />
+            <Route
+              exact
+              path="/compare"
+              component={props => (
+                <Compare
+                  {...props}
+                  covidData={covidDataSorted}
+                  lang={selectedLanguage.comparePage}
+                />
+              )}
+            />
+            <Route
+              exact
+              path="/about"
+              component={() => <About lang={selectedLanguage.aboutPage} />}
+            />
+            <Route
+              component={() => (
+                <NotFound lang={selectedLanguage.notFoundPage} />
+              )}
+            />
+          </Switch>
+          <Footer
+            lang={selectedLanguage.footer}
+            lastUpdated={updated.lastUpdated}
           />
-          <Route
-            exact
-            path="/country/:countryName"
-            component={props => (
-              <Country
-                {...props}
-                covidData={covidDataSorted}
-                lang={selectedLanguage.countryPage}
-              />
-            )}
-          />
-          <Route
-            exact
-            path="/compare"
-            component={props => (
-              <Compare
-                {...props}
-                covidData={covidDataSorted}
-                lang={selectedLanguage.comparePage}
-              />
-            )}
-          />
-          <Route
-            exact
-            path="/about"
-            component={() => <About lang={selectedLanguage.aboutPage} />}
-          />
-          <Route
-            component={() => <NotFound lang={selectedLanguage.notFoundPage} />}
-          />
-        </Switch>
-        <Footer
-          lang={selectedLanguage.footer}
-          lastUpdated={updated.lastUpdated}
-        />
-      </div>
-    </Router>
+        </div>
+      </Router>
+    </HelmetProvider>
   );
 }
 
