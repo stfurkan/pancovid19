@@ -626,7 +626,7 @@ export default class Main extends Component {
 
         <div>
           <h3
-            className="ui top attached header table-row"
+            className="ui top attached header table-row left aligned"
             onClick={() => this.setState({ graph: !this.state.graph })}
           >
             {graph ? (
