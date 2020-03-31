@@ -15,14 +15,20 @@ function Header({ lang }) {
             </div>
           </Link>
         </div>
-        <Link to="/" className="ui primary basic big button item">
+        <Link to="/" className="ui primary basic big button item header-button">
           {lang.home}
         </Link>
-        <Link to="/compare" className="ui primary basic big button item">
+        <Link
+          to="/compare"
+          className="ui primary basic big button item header-button"
+        >
           {lang.compare}
         </Link>
         <div className="right menu">
-          <Link to="/about" className="ui primary basic big button item">
+          <Link
+            to="/about"
+            className="ui primary basic big button item header-button"
+          >
             {lang.about}
           </Link>
         </div>
