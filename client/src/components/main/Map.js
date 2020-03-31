@@ -13,13 +13,13 @@ const PopupContent = props => (
       </Router>
     </div>
     <div className="item">
-      <b>{props.lang.confirmed}:</b> {props.confirmed}
+      <b>{props.lang.confirmed}:</b> {props.confirmed.toLocaleString()}
     </div>
     <div className="item">
-      <b>{props.lang.recovered}:</b> {props.recovered}
+      <b>{props.lang.recovered}:</b> {props.recovered.toLocaleString()}
     </div>
     <div className="item">
-      <b>{props.lang.deaths}:</b> {props.deaths}
+      <b>{props.lang.deaths}:</b> {props.deaths.toLocaleString()}
     </div>
   </div>
 );
