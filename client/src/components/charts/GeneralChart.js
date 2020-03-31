@@ -11,7 +11,7 @@ import {
 } from 'recharts';
 
 export default class GeneralChart extends PureComponent {
-  // This chart is used in Main and CountryPage components
+  // This chart is used in Main and Country components
   render() {
     const { graphData, lang } = this.props;
     return (

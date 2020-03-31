@@ -73,7 +73,7 @@ export default class Main extends Component {
     });
   };
 
-  // Navigate to CountryPage component when contry's row clicked on table
+  // Navigate to Country component when contry's row clicked on table
   onClickTableRow = countryName => {
     this.props.history.push(`/country/${countryName}`);
   };

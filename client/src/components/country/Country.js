@@ -6,7 +6,7 @@ import PageTitle from '../layouts/PageTitle';
 import Map from './Map';
 import GeneralChart from '../charts/GeneralChart';
 
-export default class CountryPage extends Component {
+export default class Country extends Component {
   constructor(props) {
     super(props);
 
@@ -175,6 +175,16 @@ export default class CountryPage extends Component {
         </div>
 
         <br />
+
+        <div>
+          <div className="ui segment">
+            <div className="ui grid three wide column">
+              <div className="column">START DATE</div>
+              <div className="column">END DATE</div>
+              <div className="column">BUTTON</div>
+            </div>
+          </div>
+        </div>
 
         <div>
           <h3
