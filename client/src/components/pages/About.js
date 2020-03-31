@@ -6,6 +6,7 @@ export default function About({ lang }) {
   return (
     <div className="ui container">
       <PageTitle title={lang.pageHeader} />
+      <br />
       <div>
         <h1 className="ui top attached header">{lang.pageHeader}</h1>
         <div className="ui attached segment">

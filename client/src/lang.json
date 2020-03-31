@@ -4,7 +4,9 @@
       "title": "PAN COVID-19",
       "home": "Home",
       "compare": "Compare",
-      "about": "About"
+      "about": "About",
+      "stayHome": "Stay Home",
+      "tagStayHome": "StayHome"
     },
     "mainPage": {
       "total": "Total",
@@ -85,7 +87,9 @@
       "title": "PAN COVID-19",
       "home": "Anasayfa",
       "compare": "Karşılaştır",
-      "about": "Hakkında"
+      "about": "Hakkında",
+      "stayHome": "Evde Kal",
+      "tagStayHome": "EvdeKal"
     },
     "mainPage": {
       "total": "Toplam",

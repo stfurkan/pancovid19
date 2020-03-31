@@ -33,7 +33,16 @@ function Header({ lang }) {
           </Link>
         </div>
       </div>
-      <div className="ui divider"></div>
+      <div className="ui horizontal divider header">
+        <a
+          className="ui blue large label"
+          href={`http://twitter.com/share?text=${lang.stayHome}&url=https://pancovid19.com&hashtags=${lang.tagStayHome}`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <i className="home icon"></i>#{lang.tagStayHome}
+        </a>
+      </div>
     </div>
   );
 }
