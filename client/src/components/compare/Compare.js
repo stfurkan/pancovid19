@@ -7,6 +7,8 @@ export default class Compare extends Component {
   constructor(props) {
     super(props);
 
+    this.graphRef = React.createRef();
+
     const { covidData } = props;
 
     this.state = {
@@ -41,6 +43,13 @@ export default class Compare extends Component {
       ps.country4 !== this.state.country4
     ) {
       this.setState({ compared: false });
+    }
+
+    if (ps.compared !== this.state.compared) {
+      if (this.state.compared) {
+        // Scroll to graphs div
+        window.scrollTo(0, this.graphRef.current.offsetTop);
+      }
     }
   }
 
@@ -1307,7 +1316,10 @@ export default class Compare extends Component {
           </form>
         </div>
 
-        <div className={this.state.compared ? 'ui segment' : 'hide-element'}>
+        <div
+          className={this.state.compared ? 'ui segment' : 'hide-element'}
+          ref={this.graphRef}
+        >
           <h3 className="ui top attached header">{lang.confirmed}</h3>
           <div className="ui attached segment">
             <div className="ui center aligned grid">
