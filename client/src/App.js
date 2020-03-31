@@ -6,7 +6,7 @@ import Footer from './components/layouts/Footer';
 import NotFound from './components/layouts/NotFound';
 
 import Main from './components/main/Main';
-import CountryPage from './components/country/CountryPage';
+import Country from './components/country/Country';
 import Compare from './components/compare/Compare';
 import About from './components/pages/About';
 
@@ -54,7 +54,7 @@ function App() {
             exact
             path="/country/:countryName"
             component={props => (
-              <CountryPage
+              <Country
                 {...props}
                 covidData={covidDataSorted}
                 lang={selectedLanguage.countryPage}
