@@ -22,6 +22,15 @@ export default function About({ lang }) {
                 Furkan
               </a>
             </p>
+            <p>
+              <a
+                href="https://github.com/stfurkan/pancovid19"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <i className="github icon"></i> GitHub
+              </a>
+            </p>
           </div>
           <div className="ui segment raised">
             <h4 className="ui dividing header">{lang.creditHeader}</h4>
