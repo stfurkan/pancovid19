@@ -246,6 +246,7 @@ export default class Country extends Component {
     return (
       <div className="ui container">
         <PageTitle title={countryName} />
+        <br />
         <div
           className={
             warningDate ||

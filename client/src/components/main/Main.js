@@ -580,6 +580,7 @@ export default class Main extends Component {
     return (
       <div className="ui container">
         <PageTitle title={lang.pageTitle} />
+        <br />
         <div>
           <div className="ui segment">
             <div className="ui grid stackable">
