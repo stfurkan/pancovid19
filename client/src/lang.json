@@ -27,7 +27,17 @@
       "country": "Country",
       "date": "Date",
       "exportData": "Export Data",
-      "paginationText": "Navigate to page"
+      "paginationText": "Navigate to page",
+      "warningDate": "Date values can't be null!",
+      "warningDateRange": "You shouldn't select dates earlier than 22/01/2020 !",
+      "warningDateToday": "You can't select future dates!",
+      "warningDateInvalid": "Start date can't be later than end date!",
+      "filterApplied": "Filter applied for the specified dates! (Total values next to map aren't filtered!)",
+      "clearFilter": "Clear Filter",
+      "filter": "Apply Filter",
+      "filterTitle": "Filter by date",
+      "startDate": "Start Date",
+      "endDate": "End Date"
     },
     "comparePage": {
       "pageHeader": "Compare Countries",
@@ -98,7 +108,17 @@
       "country": "Ülke",
       "date": "Tarih",
       "exportData": "Verileri Dışa Aktar",
-      "paginationText": "Sayfaya git"
+      "paginationText": "Sayfaya git",
+      "warningDate": "Tarih değerleri boş olamaz!",
+      "warningDateRange": "22/01/2020 tarihinden önce olan bir tarih seçmemelisiniz!",
+      "warningDateToday": "Seçilen tarihler bugünden büyük olamaz!",
+      "warningDateInvalid": "Başlangıç tarihi bitiş tarihinden büyük olamaz!",
+      "filterApplied": "Sayfadaki değerler belirtilen tarihlere göre filtrelendi! (Haritanın yanında bulunan toplam değerler filtre kapsamında değildir!)",
+      "clearFilter": "Filtreyi Temizle",
+      "filter": "Filtrele",
+      "filterTitle": "Tarihe göre filtrele",
+      "startDate": "Başlangıç Tarihi",
+      "endDate": "Bitiş Tarihi"
     },
     "comparePage": {
       "pageHeader": "Ülkeleri Karşılaştır",
