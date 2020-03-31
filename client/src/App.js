@@ -20,6 +20,7 @@ function App() {
   let covidDataSorted;
   let selectedLanguage;
 
+  // Sort imported json data by browser's language
   if (navigator.language === 'tr' || navigator.language === 'tr-TR') {
     selectedLanguage = lang.tr;
     covidDataSorted = [...covidData].sort((a, b) =>

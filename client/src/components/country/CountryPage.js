@@ -24,6 +24,7 @@ export default class CountryPage extends Component {
   }
 
   componentDidMount() {
+    // Scroll to top of the page
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
 
@@ -31,16 +32,20 @@ export default class CountryPage extends Component {
 
     let firstDate = '';
 
+    // Create dateItems array from country's object
     for (let date in this.state.cdata[0].data) {
       dateItems.push({ date, ...this.state.cdata[0].data[date] });
 
+      // Identify the first confirmed case's date
       if (firstDate === '' && this.state.cdata[0].data[date].confirmed > 0) {
         firstDate = date;
       }
     }
 
+    // Filter and get data for on and after first case date
     dateItems = dateItems.filter(ddata => ddata.date >= firstDate);
 
+    // Sort dates descending
     const sortedDateItems = [...dateItems].sort((a, b) =>
       b.date > a.date ? 1 : -1
     );
@@ -56,6 +61,7 @@ export default class CountryPage extends Component {
     this.setState({ pageOfItems: pageOfItems });
   };
 
+  // Create array for country's daily report CSV export
   exportCsv = () => {
     const { lang } = this.props;
 
@@ -89,6 +95,9 @@ export default class CountryPage extends Component {
     let totalRecovered = 0;
     let totalDeaths = 0;
 
+    /*
+     * UPDATE THIS LOOP!!!!!!!!!
+     */
     for (let date in cdata.data) {
       if (date === today) {
         totalConfirmed = cdata.data[date].confirmed;
@@ -109,6 +118,7 @@ export default class CountryPage extends Component {
       }
     }
 
+    // Get Turkish or English country names by browser's language
     let countryName;
     if (navigator.language === 'tr' || navigator.language === 'tr-TR') {
       countryName = cdata.countryTr;

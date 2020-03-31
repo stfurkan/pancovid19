@@ -33,6 +33,7 @@ export default class Compare extends Component {
   }
 
   componentDidUpdate(pp, ps) {
+    // If any country value changes, refresh the compare charts
     if (
       ps.country1 !== this.state.country1 ||
       ps.country2 !== this.state.country2 ||
@@ -49,6 +50,7 @@ export default class Compare extends Component {
     });
   };
 
+  // Function for getting the index of the largest element in an array
   indexOfMax = arr => {
     if (arr.length === 0) {
       return -1;
@@ -67,9 +69,11 @@ export default class Compare extends Component {
     return maxIndex;
   };
 
+  // This function runs whenever Compare button is clicked
   onClickCompare = e => {
     e.preventDefault();
 
+    // Refresh warning states
     this.setState({
       warningCountry: false,
       warningDate: false,
@@ -124,6 +128,7 @@ export default class Compare extends Component {
     let country3DataFirstDeaths;
     let country4DataFirstDeaths;
 
+    // If any of these coditions occur, show warning to client. Otherwise, function will continue from else state
     if (
       country1 === '' ||
       country2 === '' ||
@@ -135,32 +140,39 @@ export default class Compare extends Component {
       tempEndDate > today ||
       tempStartDate > tempEndDate
     ) {
+      // Scroll the top of the page
       document.body.scrollTop = 0;
       document.documentElement.scrollTop = 0;
+
+      // If user didn't choose at least two countries
       if (country1 === '' || country2 === '') {
         this.setState({
           warningCountry: true
         });
       }
 
+      // If user didn't specify start or end date
       if (startDate === '' || endDate === '') {
         this.setState({
           warningDate: true
         });
       }
 
+      // If one of the dates earlier than data start date (22/01/2020)
       if (tempStartDate < firstDate || tempEndDate < firstDate) {
         this.setState({
           warningDateRange: true
         });
       }
 
+      // If start or end date later than today's date
       if (tempStartDate > today || tempEndDate > today) {
         this.setState({
           warningDateToday: true
         });
       }
 
+      // If start date is later than end date
       if (tempStartDate > tempEndDate) {
         this.setState({
           warningDateInvalid: true
@@ -170,6 +182,7 @@ export default class Compare extends Component {
       let country1Data;
       let country2Data;
 
+      // Check browser language. If it is Turkish, use Turkish country names. Otherwise, use English country names.
       if (navigator.language === 'tr' || navigator.language === 'tr-TR') {
         country1Data = covidData.filter(
           cdata =>
@@ -200,6 +213,7 @@ export default class Compare extends Component {
         let country3Data;
         let country4Data;
 
+        // Check browser language. If it is Turkish, use Turkish country names. Otherwise, use English country names.
         if (navigator.language === 'tr' || navigator.language === 'tr-TR') {
           country3Data = covidData.filter(
             cdata =>
@@ -590,6 +604,8 @@ export default class Compare extends Component {
         }
       } else if (country3 !== '') {
         let country3Data;
+
+        // Check browser language. If it is Turkish, use Turkish country names. Otherwise, use English country names.
         if (navigator.language === 'tr' || navigator.language === 'tr-TR') {
           country3Data = covidData.filter(
             cdata =>

@@ -12,6 +12,7 @@ export default class Map extends Component {
   mapRef = React.createRef();
 
   componentDidMount() {
+    // Create map with a single marker for the country
     this.map = L.map('dataMap', {
       zoom: 3,
       minZoom: 2,
@@ -30,6 +31,7 @@ export default class Map extends Component {
       ]
     });
 
+    // Create the marker for the country
     L.marker([this.props.latitude, this.props.longitude])
       .bindPopup(`<b>${this.props.lang.country}: </b>${this.props.country}`)
       .addTo(this.map);
