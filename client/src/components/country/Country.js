@@ -155,6 +155,8 @@ export default class Country extends Component {
 
   onClearFilter = () => {
     this.setState({
+      startDate: new Date(2020, 0, 22).toISOString().split('T')[0],
+      endDate: new Date().toISOString().split('T')[0],
       graphData: [...this.state.dateItems],
       pageList: [...this.state.sortedDateItems],
       filtered: false
@@ -280,7 +282,7 @@ export default class Country extends Component {
               {lang.warningDateRange}
             </b>
             <div
-              className="circular ui icon red button right aligned"
+              className="circular ui icon red button"
               onClick={() => this.setState({ warningDateRange: false })}
             >
               <i className="close icon"></i>
@@ -297,7 +299,7 @@ export default class Country extends Component {
               {lang.warningDateToday}
             </b>
             <div
-              className="circular ui icon red button right aligned"
+              className="circular ui icon red button"
               onClick={() => this.setState({ warningDateToday: false })}
             >
               <i className="close icon"></i>
@@ -314,7 +316,7 @@ export default class Country extends Component {
               {lang.warningDateInvalid}
             </b>
             <div
-              className="circular ui icon red button right aligned"
+              className="circular ui icon red button"
               onClick={() => this.setState({ warningDateInvalid: false })}
             >
               <i className="close icon"></i>
@@ -324,12 +326,12 @@ export default class Country extends Component {
           <div
             className={filtered ? 'ui green segment raised' : 'hide-element'}
           >
-            <b>
+            <div className="ui header">
               <i className="thumbs up outline icon"></i>
               {lang.filterApplied}
-            </b>
+            </div>
             <div
-              className="ui green button right aligned"
+              className="ui green button"
               onClick={() => this.onClearFilter()}
             >
               {lang.clearFilter}
@@ -499,12 +501,13 @@ export default class Country extends Component {
                 >
                   {lang.filter}
                 </div>
-                <div
+                <button
                   className="ui green button"
                   onClick={() => this.onClearFilter()}
+                  disabled={!filtered}
                 >
                   {lang.clearFilter}
-                </div>
+                </button>
               </div>
             </form>
           </div>
