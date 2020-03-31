@@ -3,6 +3,7 @@ import ReactDOMServer from 'react-dom/server';
 import { HashRouter, Link } from 'react-router-dom';
 import L from 'leaflet';
 
+// Popup content component for main map
 const PopupContent = props => (
   <div className="ui list">
     <div className="item">
@@ -58,6 +59,8 @@ export default class Map extends Component {
       let confirmed = 0;
       let recovered = 0;
       let deaths = 0;
+
+      // Get most up to date data for countries
       if (celem.data[today]) {
         confirmed = celem.data[today]['confirmed'];
         recovered = celem.data[today]['recovered'];
@@ -78,6 +81,7 @@ export default class Map extends Component {
 
       const { lang } = this.props;
 
+      // Get Turkish or English country names by browser's language
       let countryName;
       if (navigator.language === 'tr' || navigator.language === 'tr-TR') {
         countryName = celem.countryTr;
@@ -85,6 +89,7 @@ export default class Map extends Component {
         countryName = celem.country;
       }
 
+      // Create marker for every country
       let popupContentNode = (
         <PopupContent
           lang={lang}

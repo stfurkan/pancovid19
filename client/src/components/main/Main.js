@@ -33,12 +33,14 @@ export default class Main extends Component {
   }
 
   componentDidUpdate(pp, ps) {
+    // Filter the country list whenever searchCountry state updated
     if (ps.searchCountry !== this.state.searchCountry) {
       if (this.state.searchCountry === '') {
         this.setState({
           pageList: [...this.state.covidData]
         });
       } else {
+        // Decide to filter by Turkish or English country names by browser language
         if (navigator.language === 'tr' || navigator.language === 'tr-TR') {
           this.setState({
             pageList: [...this.state.covidData].filter(cdata =>
@@ -71,10 +73,12 @@ export default class Main extends Component {
     });
   };
 
+  // Navigate to CountryPage component when contry's row clicked on table
   onClickTableRow = countryName => {
     this.props.history.push(`/country/${countryName}`);
   };
 
+  // Sort table rows by country name, confirmed, recovered and deaths
   onClickSort = sortItem => {
     const { searchCountry, covidData, sorted } = this.state;
     if (searchCountry !== '') {
@@ -484,12 +488,15 @@ export default class Main extends Component {
     let totalRecovered = 0;
     let totalDeaths = 0;
 
+    // Create CSV header for export
     let csvData = [[lang.country, lang.confirmed, lang.recovered, lang.deaths]];
 
     covidData.forEach(celem => {
       let confirmed = 0;
       let recovered = 0;
       let deaths = 0;
+
+      // Get most up to date information for all the countries
       if (celem.data[today]) {
         confirmed = celem.data[today]['confirmed'];
         recovered = celem.data[today]['recovered'];
@@ -508,6 +515,7 @@ export default class Main extends Component {
         }
       }
 
+      // Get Turkish or English country names by browser's language
       let countryName;
       if (navigator.language === 'tr' || navigator.language === 'tr-TR') {
         countryName = celem.countryTr;
@@ -515,6 +523,7 @@ export default class Main extends Component {
         countryName = celem.country;
       }
 
+      // Add rows to CSV array for export
       csvData.push([countryName, confirmed, recovered, deaths]);
 
       totalConfirmed += confirmed;
@@ -522,6 +531,7 @@ export default class Main extends Component {
       totalDeaths += deaths;
     });
 
+    // Process items for current table page items (10 per page default)
     pageOfItems.forEach(celem => {
       let confirmed = 0;
       let recovered = 0;
@@ -544,6 +554,7 @@ export default class Main extends Component {
         }
       }
 
+      // Get Turkish or English country names by browser's language
       let countryName;
       if (navigator.language === 'tr' || navigator.language === 'tr-TR') {
         countryName = celem.countryTr;
@@ -551,6 +562,7 @@ export default class Main extends Component {
         countryName = celem.country;
       }
 
+      // Create table rows
       tableItems.push(
         <tr
           key={celem.country}

@@ -11,6 +11,7 @@ import {
 } from 'recharts';
 
 export default class CompareChart extends PureComponent {
+  // This chart is used in Compare component
   render() {
     return (
       <div className="graph-container">
