@@ -361,25 +361,44 @@ export default class Country extends Component {
                     <div className="row">
                       <div className="column">
                         <div className="ui large header">{lang.total}</div>
-                      </div>
-                    </div>
-                    <div className="ui divider"></div>
-                    <div className="row">
-                      <div className="column">
-                        <div className="ui medium header">{lang.confirmed}</div>
-                        {totalConfirmed.toLocaleString()}
+
+                        <div className="ui fitted divider"></div>
                       </div>
                     </div>
                     <div className="row">
                       <div className="column">
-                        <div className="ui medium header">{lang.recovered}</div>
-                        {totalRecovered.toLocaleString()}
+                        <h2 className="ui orange header">
+                          <div className="content">
+                            {lang.confirmed}
+                            <div className="sub header total-number">
+                              {totalConfirmed.toLocaleString()}
+                            </div>
+                          </div>
+                        </h2>
                       </div>
                     </div>
                     <div className="row">
                       <div className="column">
-                        <div className="ui medium header">{lang.deaths}</div>
-                        {totalDeaths.toLocaleString()}
+                        <h2 className="ui green header">
+                          <div className="content">
+                            {lang.recovered}
+                            <div className="sub header total-number">
+                              {totalRecovered.toLocaleString()}
+                            </div>
+                          </div>
+                        </h2>
+                      </div>
+                    </div>
+                    <div className="row">
+                      <div className="column">
+                        <h2 className="ui red header">
+                          <div className="content">
+                            {lang.deaths}
+                            <div className="sub header total-number">
+                              {totalDeaths.toLocaleString()}
+                            </div>
+                          </div>
+                        </h2>
                       </div>
                     </div>
                   </div>

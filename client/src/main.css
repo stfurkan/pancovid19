@@ -36,3 +36,7 @@
 .header-button:hover {
   text-decoration: underline !important;
 }
+
+.total-number {
+  font-weight: bold !important;
+}
