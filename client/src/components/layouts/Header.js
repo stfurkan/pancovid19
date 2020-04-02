@@ -1,9 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router';
 
 import logo from '../../logo.png';
 
-function Header({ lang }) {
+function Header({ lang, history }) {
+  const { pathname } = history.location;
+
   return (
     <div className="ui container ">
       <div className="ui divider"></div>
@@ -15,25 +18,44 @@ function Header({ lang }) {
             </div>
           </Link>
         </div>
-        <Link to="/" className="ui primary basic big button item header-button">
+        <Link
+          to="/"
+          className={
+            pathname === '/'
+              ? 'ui orange basic big button item header-button'
+              : 'ui primary basic big button item header-button'
+          }
+        >
           {lang.home}
         </Link>
         <Link
           to="/compare"
-          className="ui primary basic big button item header-button"
+          className={
+            pathname === '/compare'
+              ? 'ui orange basic big button item header-button'
+              : 'ui primary basic big button item header-button'
+          }
         >
           {lang.compare}
         </Link>
         <Link
           to="/forecast"
-          className="ui primary basic big button item header-button"
+          className={
+            pathname === '/forecast'
+              ? 'ui orange basic big button item header-button'
+              : 'ui primary basic big button item header-button'
+          }
         >
           {lang.forecast}
         </Link>
         <div className="right menu">
           <Link
             to="/about"
-            className="ui primary basic big button item header-button"
+            className={
+              pathname === '/about'
+                ? 'ui orange basic big button item header-button'
+                : 'ui primary basic big button item header-button'
+            }
           >
             {lang.about}
           </Link>
@@ -53,4 +75,4 @@ function Header({ lang }) {
   );
 }
 
-export default Header;
+export default withRouter(Header);
