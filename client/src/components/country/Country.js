@@ -10,6 +10,11 @@ export default class Country extends Component {
   constructor(props) {
     super(props);
 
+    let lastDay;
+    for (let ddate in this.props.covidData[0].data) {
+      lastDay = ddate;
+    }
+
     this.state = {
       cdata: this.props.covidData.filter(
         cdata =>
@@ -20,6 +25,7 @@ export default class Country extends Component {
       sortedDateItems: [],
       pageList: [],
       pageOfItems: [],
+      lastDay: lastDay,
       graphData: [],
       graph: true,
       startDate: new Date(2020, 0, 22).toISOString().split('T')[0],
@@ -194,38 +200,17 @@ export default class Country extends Component {
   };
 
   render() {
+    const { lastDay } = this.state;
     const cdata = this.state.cdata[0];
-
-    let today = new Date().toISOString().split('T')[0];
-    let yesterday = (d => new Date(d.setDate(d.getDate() - 1)))(new Date())
-      .toISOString()
-      .split('T')[0];
-    let previousDay = (d => new Date(d.setDate(d.getDate() - 2)))(new Date())
-      .toISOString()
-      .split('T')[0];
 
     let totalConfirmed = 0;
     let totalRecovered = 0;
     let totalDeaths = 0;
 
     // Get most up to date data for countries
-    if (cdata.data[today]) {
-      totalConfirmed = cdata.data[today]['confirmed'];
-      totalRecovered = cdata.data[today]['recovered'];
-      totalDeaths = cdata.data[today]['deaths'];
-    } else {
-      if (cdata.data[yesterday]) {
-        totalConfirmed = cdata.data[yesterday]['confirmed'];
-        totalRecovered = cdata.data[yesterday]['recovered'];
-        totalDeaths = cdata.data[yesterday]['deaths'];
-      } else {
-        if (cdata.data[previousDay]) {
-          totalConfirmed = cdata.data[previousDay]['confirmed'];
-          totalRecovered = cdata.data[previousDay]['recovered'];
-          totalDeaths = cdata.data[previousDay]['deaths'];
-        }
-      }
-    }
+    totalConfirmed = cdata.data[lastDay]['confirmed'];
+    totalRecovered = cdata.data[lastDay]['recovered'];
+    totalDeaths = cdata.data[lastDay]['deaths'];
 
     // Get Turkish or English country names by browser's language
     let countryName;
@@ -462,7 +447,7 @@ export default class Country extends Component {
                     <div className="eight wide column left aligned">
                       <CSVLink
                         className="circular ui icon button blue"
-                        filename={`${countryName}_${today}_covid19.csv`}
+                        filename={`${countryName}_${lastDay}_covid19.csv`}
                         data={this.exportCsv()}
                         title={lang.exportData}
                       >
