@@ -40,3 +40,7 @@
 .total-number {
   font-weight: bold !important;
 }
+
+.close-label:hover {
+  cursor: pointer !important;
+}

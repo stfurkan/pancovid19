@@ -88,6 +88,7 @@ function App() {
                   covidData={covidForecastSorted}
                   graphData={graphForecast}
                   lang={selectedLanguage.mainPage}
+                  forecast={true}
                 />
               )}
             />
@@ -99,6 +100,7 @@ function App() {
                   {...props}
                   covidData={covidForecastSorted}
                   lang={selectedLanguage.countryPage}
+                  forecast={true}
                 />
               )}
             />

@@ -4,6 +4,7 @@
       "title": "PAN COVID-19",
       "home": "Home",
       "compare": "Compare",
+      "forecast": "Forecast",
       "about": "About",
       "stayHome": "Stay Home",
       "tagStayHome": "StayHome"
@@ -18,7 +19,10 @@
       "searchCountry": "Search Country",
       "exportData": "Export Data",
       "paginationText": "Navigate to page",
-      "pageTitle": "Homepage"
+      "pageTitle": "Homepage",
+      "forecastTitle": "Forecast",
+      "forecastWarningTitle": "ATTENTION",
+      "forecastWarningText": "Forecast data is for only educational purposes and reliance on this data is strictly prohibited. Use this data at your own risk!"
     },
     "countryPage": {
       "total": "Total",
@@ -39,7 +43,10 @@
       "filter": "Apply Filter",
       "filterTitle": "Filter by date",
       "startDate": "Start Date",
-      "endDate": "End Date"
+      "endDate": "End Date",
+      "forecastTitle": "Forecast",
+      "forecastWarningTitle": "ATTENTION",
+      "forecastWarningText": "Forecast data is for only educational purposes and reliance on this data is strictly prohibited. Use this data at your own risk!"
     },
     "comparePage": {
       "pageHeader": "Compare Countries",
@@ -87,6 +94,7 @@
       "title": "PAN COVID-19",
       "home": "Anasayfa",
       "compare": "Karşılaştır",
+      "forecast": "Tahmin",
       "about": "Hakkında",
       "stayHome": "Evde Kal",
       "tagStayHome": "EvdeKal"
@@ -101,7 +109,10 @@
       "searchCountry": "Ülke Ara",
       "exportData": "Verileri Dışa Aktar",
       "paginationText": "Sayfaya git",
-      "pageTitle": "Anasayfa"
+      "pageTitle": "Anasayfa",
+      "forecastTitle": "Tahmin",
+      "forecastWarningTitle": "DİKKAT",
+      "forecastWarningText": "Tahmin verileri eğitim amaçlıdır ve bu verilere hiçbir şekilde güvenmemelisiniz. Bu verileri kullanmak kendi sorumluluğunuzdadır!"
     },
     "countryPage": {
       "total": "Toplam",
@@ -122,7 +133,10 @@
       "filter": "Filtrele",
       "filterTitle": "Tarihe göre filtrele",
       "startDate": "Başlangıç Tarihi",
-      "endDate": "Bitiş Tarihi"
+      "endDate": "Bitiş Tarihi",
+      "forecastTitle": "Tahmin",
+      "forecastWarningTitle": "DİKKAT",
+      "forecastWarningText": "Tahmin verileri eğitim amaçlıdır ve bu verilere hiçbir şekilde güvenmemelisiniz. Bu verileri kullanmak kendi sorumluluğunuzdadır!"
     },
     "comparePage": {
       "pageHeader": "Ülkeleri Karşılaştır",

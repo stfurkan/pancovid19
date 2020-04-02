@@ -29,7 +29,8 @@ export default class Main extends Component {
         confirmed: 0,
         recovered: 0,
         deaths: 0
-      }
+      },
+      warningForecast: true
     };
   }
 
@@ -92,7 +93,11 @@ export default class Main extends Component {
 
   // Navigate to Country component when contry's row clicked on table
   onClickTableRow = countryName => {
-    this.props.history.push(`/country/${countryName}`);
+    if (this.props.forecast) {
+      this.props.history.push(`/forecast/${countryName}`);
+    } else {
+      this.props.history.push(`/country/${countryName}`);
+    }
   };
 
   // Sort table rows by country name, confirmed, recovered and deaths
@@ -326,7 +331,14 @@ export default class Main extends Component {
   };
 
   render() {
-    const { pageOfItems, covidData, graph, sorted, lastDay } = this.state;
+    const {
+      pageOfItems,
+      covidData,
+      graph,
+      sorted,
+      lastDay,
+      warningForecast
+    } = this.state;
     const { lang } = this.props;
     const tableItems = [];
 
@@ -394,9 +406,26 @@ export default class Main extends Component {
 
     return (
       <div className="ui container">
-        <PageTitle title={lang.pageTitle} />
+        <PageTitle
+          title={this.props.forecast ? lang.forecastTitle : lang.pageTitle}
+        />
         <br />
         <div>
+          {this.props.forecast && warningForecast && (
+            <div>
+              <div className="ui orange segment">
+                <h4 className="ui header">{lang.forecastWarningTitle}</h4>
+                <p>{lang.forecastWarningText}</p>
+                <div
+                  className="ui orange right corner label close-label"
+                  onClick={() => this.setState({ warningForecast: false })}
+                >
+                  <i className="close icon close-label"></i>
+                </div>
+              </div>
+            </div>
+          )}
+
           <div className="ui segment">
             <div className="ui grid stackable">
               <div className="twelve wide column left aligned">
