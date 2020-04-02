@@ -9,7 +9,15 @@ const PopupContent = props => (
     <div className="item">
       <b>{props.lang.country}:</b>{' '}
       <Router>
-        <Link to={`/country/${props.country}`}>{props.countryName}</Link>
+        <Link
+          to={
+            props.forecast
+              ? `/forecast/${props.country}`
+              : `/country/${props.country}`
+          }
+        >
+          {props.countryName}
+        </Link>
       </Router>
     </div>
     <div className="item">
@@ -79,7 +87,7 @@ export default class Map extends Component {
         }
       }
 
-      const { lang } = this.props;
+      const { lang, forecast } = this.props;
 
       // Get Turkish or English country names by browser's language
       let countryName;
@@ -98,6 +106,7 @@ export default class Map extends Component {
           confirmed={confirmed}
           recovered={recovered}
           deaths={deaths}
+          forecast={forecast}
         />
       );
       let popupContentHtml = ReactDOMServer.renderToString(popupContentNode);

@@ -431,7 +431,11 @@ export default class Main extends Component {
             <div className="ui grid stackable">
               <div className="twelve wide column left aligned">
                 <div className="ui segment raised">
-                  <Map covidData={covidData} lang={lang} />
+                  <Map
+                    covidData={covidData}
+                    lang={lang}
+                    forecast={this.props.forecast}
+                  />
                 </div>
               </div>
               <div className="four wide column right aligned">
