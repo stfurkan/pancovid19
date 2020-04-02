@@ -24,6 +24,12 @@ function Header({ lang }) {
         >
           {lang.compare}
         </Link>
+        <Link
+          to="/forecast"
+          className="ui primary basic big button item header-button"
+        >
+          {lang.forecast}
+        </Link>
         <div className="right menu">
           <Link
             to="/about"

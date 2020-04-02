@@ -12,10 +12,16 @@ export default class Main extends Component {
 
     const { covidData } = props;
 
+    let lastDay;
+    for (let ddate in covidData[0].data) {
+      lastDay = ddate;
+    }
+
     this.state = {
       covidData: [...covidData],
       pageList: [...covidData],
       pageOfItems: [],
+      lastDay: lastDay,
       searchCountry: '',
       graph: true,
       sorted: {
@@ -23,13 +29,25 @@ export default class Main extends Component {
         confirmed: 0,
         recovered: 0,
         deaths: 0
-      }
+      },
+      warningForecast: true
     };
   }
 
   componentDidMount() {
-    // Default sort by confirmed cases
-    this.onClickSort('confirmed');
+    let lastDay;
+    for (let ddate in this.state.covidData[0].data) {
+      lastDay = ddate;
+    }
+    this.setState(
+      {
+        lastDay: lastDay
+      },
+      () => {
+        // Default sort by confirmed cases
+        this.onClickSort('confirmed');
+      }
+    );
   }
 
   componentDidUpdate(pp, ps) {
@@ -75,23 +93,20 @@ export default class Main extends Component {
 
   // Navigate to Country component when contry's row clicked on table
   onClickTableRow = countryName => {
-    this.props.history.push(`/country/${countryName}`);
+    if (this.props.forecast) {
+      this.props.history.push(`/forecast/${countryName}`);
+    } else {
+      this.props.history.push(`/country/${countryName}`);
+    }
   };
 
   // Sort table rows by country name, confirmed, recovered and deaths
   onClickSort = sortItem => {
-    const { searchCountry, covidData, sorted } = this.state;
+    const { searchCountry, covidData, sorted, lastDay } = this.state;
+
     if (searchCountry !== '') {
       this.setState({ searchCountry: '' });
     }
-
-    let today = new Date().toISOString().split('T')[0];
-    let yesterday = (d => new Date(d.setDate(d.getDate() - 1)))(new Date())
-      .toISOString()
-      .split('T')[0];
-    let previousDay = (d => new Date(d.setDate(d.getDate() - 2)))(new Date())
-      .toISOString()
-      .split('T')[0];
 
     let sortedItems = [...covidData];
 
@@ -164,28 +179,9 @@ export default class Main extends Component {
     // Sort by confirmed
     if (sortItem === 'confirmed') {
       if (sorted.confirmed === 0) {
-        if (sortedItems[0].data[today]) {
-          sortedItems = [...sortedItems].sort((a, b) =>
-            b.data[today]['confirmed'] > a.data[today]['confirmed'] ? 1 : -1
-          );
-        } else {
-          if (sortedItems[0].data[yesterday]) {
-            sortedItems = [...sortedItems].sort((a, b) =>
-              b.data[yesterday]['confirmed'] > a.data[yesterday]['confirmed']
-                ? 1
-                : -1
-            );
-          } else {
-            if (sortedItems[0].data[previousDay]) {
-              sortedItems = [...sortedItems].sort((a, b) =>
-                b.data[previousDay]['confirmed'] >
-                a.data[previousDay]['confirmed']
-                  ? 1
-                  : -1
-              );
-            }
-          }
-        }
+        sortedItems = [...sortedItems].sort((a, b) =>
+          b.data[lastDay]['confirmed'] > a.data[lastDay]['confirmed'] ? 1 : -1
+        );
 
         this.setState({
           sorted: {
@@ -199,28 +195,10 @@ export default class Main extends Component {
       }
 
       if (sorted.confirmed === 1) {
-        if (sortedItems[0].data[today]) {
-          sortedItems = [...sortedItems].sort((a, b) =>
-            a.data[today]['confirmed'] > b.data[today]['confirmed'] ? 1 : -1
-          );
-        } else {
-          if (sortedItems[0].data[yesterday]) {
-            sortedItems = [...sortedItems].sort((a, b) =>
-              a.data[yesterday]['confirmed'] > b.data[yesterday]['confirmed']
-                ? 1
-                : -1
-            );
-          } else {
-            if (sortedItems[0].data[previousDay]) {
-              sortedItems = [...sortedItems].sort((a, b) =>
-                a.data[previousDay]['confirmed'] >
-                b.data[previousDay]['confirmed']
-                  ? 1
-                  : -1
-              );
-            }
-          }
-        }
+        sortedItems = [...sortedItems].sort((a, b) =>
+          a.data[lastDay]['confirmed'] > b.data[lastDay]['confirmed'] ? 1 : -1
+        );
+
         this.setState({
           sorted: {
             country: 0,
@@ -233,28 +211,10 @@ export default class Main extends Component {
       }
 
       if (sorted.confirmed === 2) {
-        if (sortedItems[0].data[today]) {
-          sortedItems = [...sortedItems].sort((a, b) =>
-            b.data[today]['confirmed'] > a.data[today]['confirmed'] ? 1 : -1
-          );
-        } else {
-          if (sortedItems[0].data[yesterday]) {
-            sortedItems = [...sortedItems].sort((a, b) =>
-              b.data[yesterday]['confirmed'] > a.data[yesterday]['confirmed']
-                ? 1
-                : -1
-            );
-          } else {
-            if (sortedItems[0].data[previousDay]) {
-              sortedItems = [...sortedItems].sort((a, b) =>
-                b.data[previousDay]['confirmed'] >
-                a.data[previousDay]['confirmed']
-                  ? 1
-                  : -1
-              );
-            }
-          }
-        }
+        sortedItems = [...sortedItems].sort((a, b) =>
+          b.data[lastDay]['confirmed'] > a.data[lastDay]['confirmed'] ? 1 : -1
+        );
+
         this.setState({
           sorted: {
             country: 0,
@@ -270,28 +230,9 @@ export default class Main extends Component {
     // Sort by recovered
     if (sortItem === 'recovered') {
       if (sorted.recovered === 0) {
-        if (sortedItems[0].data[today]) {
-          sortedItems = [...sortedItems].sort((a, b) =>
-            b.data[today]['recovered'] > a.data[today]['recovered'] ? 1 : -1
-          );
-        } else {
-          if (sortedItems[0].data[yesterday]) {
-            sortedItems = [...sortedItems].sort((a, b) =>
-              b.data[yesterday]['recovered'] > a.data[yesterday]['recovered']
-                ? 1
-                : -1
-            );
-          } else {
-            if (sortedItems[0].data[previousDay]) {
-              sortedItems = [...sortedItems].sort((a, b) =>
-                b.data[previousDay]['recovered'] >
-                a.data[previousDay]['recovered']
-                  ? 1
-                  : -1
-              );
-            }
-          }
-        }
+        sortedItems = [...sortedItems].sort((a, b) =>
+          b.data[lastDay]['recovered'] > a.data[lastDay]['recovered'] ? 1 : -1
+        );
 
         this.setState({
           sorted: {
@@ -305,28 +246,10 @@ export default class Main extends Component {
       }
 
       if (sorted.recovered === 1) {
-        if (sortedItems[0].data[today]) {
-          sortedItems = [...sortedItems].sort((a, b) =>
-            a.data[today]['recovered'] > b.data[today]['recovered'] ? 1 : -1
-          );
-        } else {
-          if (sortedItems[0].data[yesterday]) {
-            sortedItems = [...sortedItems].sort((a, b) =>
-              a.data[yesterday]['recovered'] > b.data[yesterday]['recovered']
-                ? 1
-                : -1
-            );
-          } else {
-            if (sortedItems[0].data[previousDay]) {
-              sortedItems = [...sortedItems].sort((a, b) =>
-                a.data[previousDay]['recovered'] >
-                b.data[previousDay]['recovered']
-                  ? 1
-                  : -1
-              );
-            }
-          }
-        }
+        sortedItems = [...sortedItems].sort((a, b) =>
+          a.data[lastDay]['recovered'] > b.data[lastDay]['recovered'] ? 1 : -1
+        );
+
         this.setState({
           sorted: {
             country: 0,
@@ -339,28 +262,10 @@ export default class Main extends Component {
       }
 
       if (sorted.recovered === 2) {
-        if (sortedItems[0].data[today]) {
-          sortedItems = [...sortedItems].sort((a, b) =>
-            b.data[today]['recovered'] > a.data[today]['recovered'] ? 1 : -1
-          );
-        } else {
-          if (sortedItems[0].data[yesterday]) {
-            sortedItems = [...sortedItems].sort((a, b) =>
-              b.data[yesterday]['recovered'] > a.data[yesterday]['recovered']
-                ? 1
-                : -1
-            );
-          } else {
-            if (sortedItems[0].data[previousDay]) {
-              sortedItems = [...sortedItems].sort((a, b) =>
-                b.data[previousDay]['recovered'] >
-                a.data[previousDay]['recovered']
-                  ? 1
-                  : -1
-              );
-            }
-          }
-        }
+        sortedItems = [...sortedItems].sort((a, b) =>
+          b.data[lastDay]['recovered'] > a.data[lastDay]['recovered'] ? 1 : -1
+        );
+
         this.setState({
           sorted: {
             country: 0,
@@ -376,25 +281,9 @@ export default class Main extends Component {
     // Sort by deaths
     if (sortItem === 'deaths') {
       if (sorted.deaths === 0) {
-        if (sortedItems[0].data[today]) {
-          sortedItems = [...sortedItems].sort((a, b) =>
-            b.data[today]['deaths'] > a.data[today]['deaths'] ? 1 : -1
-          );
-        } else {
-          if (sortedItems[0].data[yesterday]) {
-            sortedItems = [...sortedItems].sort((a, b) =>
-              b.data[yesterday]['deaths'] > a.data[yesterday]['deaths'] ? 1 : -1
-            );
-          } else {
-            if (sortedItems[0].data[previousDay]) {
-              sortedItems = [...sortedItems].sort((a, b) =>
-                b.data[previousDay]['deaths'] > a.data[previousDay]['deaths']
-                  ? 1
-                  : -1
-              );
-            }
-          }
-        }
+        sortedItems = [...sortedItems].sort((a, b) =>
+          b.data[lastDay]['deaths'] > a.data[lastDay]['deaths'] ? 1 : -1
+        );
 
         this.setState({
           sorted: {
@@ -408,25 +297,10 @@ export default class Main extends Component {
       }
 
       if (sorted.deaths === 1) {
-        if (sortedItems[0].data[today]) {
-          sortedItems = [...sortedItems].sort((a, b) =>
-            a.data[today]['deaths'] > b.data[today]['deaths'] ? 1 : -1
-          );
-        } else {
-          if (sortedItems[0].data[yesterday]) {
-            sortedItems = [...sortedItems].sort((a, b) =>
-              a.data[yesterday]['deaths'] > b.data[yesterday]['deaths'] ? 1 : -1
-            );
-          } else {
-            if (sortedItems[0].data[previousDay]) {
-              sortedItems = [...sortedItems].sort((a, b) =>
-                a.data[previousDay]['deaths'] > b.data[previousDay]['deaths']
-                  ? 1
-                  : -1
-              );
-            }
-          }
-        }
+        sortedItems = [...sortedItems].sort((a, b) =>
+          a.data[lastDay]['deaths'] > b.data[lastDay]['deaths'] ? 1 : -1
+        );
+
         this.setState({
           sorted: {
             country: 0,
@@ -439,25 +313,10 @@ export default class Main extends Component {
       }
 
       if (sorted.deaths === 2) {
-        if (sortedItems[0].data[today]) {
-          sortedItems = [...sortedItems].sort((a, b) =>
-            b.data[today]['deaths'] > a.data[today]['deaths'] ? 1 : -1
-          );
-        } else {
-          if (sortedItems[0].data[yesterday]) {
-            sortedItems = [...sortedItems].sort((a, b) =>
-              b.data[yesterday]['deaths'] > a.data[yesterday]['deaths'] ? 1 : -1
-            );
-          } else {
-            if (sortedItems[0].data[previousDay]) {
-              sortedItems = [...sortedItems].sort((a, b) =>
-                b.data[previousDay]['deaths'] > a.data[previousDay]['deaths']
-                  ? 1
-                  : -1
-              );
-            }
-          }
-        }
+        sortedItems = [...sortedItems].sort((a, b) =>
+          b.data[lastDay]['deaths'] > a.data[lastDay]['deaths'] ? 1 : -1
+        );
+
         this.setState({
           sorted: {
             country: 0,
@@ -472,17 +331,16 @@ export default class Main extends Component {
   };
 
   render() {
-    const { pageOfItems, covidData, graph, sorted } = this.state;
+    const {
+      pageOfItems,
+      covidData,
+      graph,
+      sorted,
+      lastDay,
+      warningForecast
+    } = this.state;
     const { lang } = this.props;
     const tableItems = [];
-
-    let today = new Date().toISOString().split('T')[0];
-    let yesterday = (d => new Date(d.setDate(d.getDate() - 1)))(new Date())
-      .toISOString()
-      .split('T')[0];
-    let previousDay = (d => new Date(d.setDate(d.getDate() - 2)))(new Date())
-      .toISOString()
-      .split('T')[0];
 
     let totalConfirmed = 0;
     let totalRecovered = 0;
@@ -497,23 +355,9 @@ export default class Main extends Component {
       let deaths = 0;
 
       // Get most up to date information for all the countries
-      if (celem.data[today]) {
-        confirmed = celem.data[today]['confirmed'];
-        recovered = celem.data[today]['recovered'];
-        deaths = celem.data[today]['deaths'];
-      } else {
-        if (celem.data[yesterday]) {
-          confirmed = celem.data[yesterday]['confirmed'];
-          recovered = celem.data[yesterday]['recovered'];
-          deaths = celem.data[yesterday]['deaths'];
-        } else {
-          if (celem.data[previousDay]) {
-            confirmed = celem.data[previousDay]['confirmed'];
-            recovered = celem.data[previousDay]['recovered'];
-            deaths = celem.data[previousDay]['deaths'];
-          }
-        }
-      }
+      confirmed = celem.data[lastDay]['confirmed'];
+      recovered = celem.data[lastDay]['recovered'];
+      deaths = celem.data[lastDay]['deaths'];
 
       // Get Turkish or English country names by browser's language
       let countryName;
@@ -533,26 +377,9 @@ export default class Main extends Component {
 
     // Process items for current table page items (10 per page default)
     pageOfItems.forEach(celem => {
-      let confirmed = 0;
-      let recovered = 0;
-      let deaths = 0;
-      if (celem.data[today]) {
-        confirmed = celem.data[today]['confirmed'];
-        recovered = celem.data[today]['recovered'];
-        deaths = celem.data[today]['deaths'];
-      } else {
-        if (celem.data[yesterday]) {
-          confirmed = celem.data[yesterday]['confirmed'];
-          recovered = celem.data[yesterday]['recovered'];
-          deaths = celem.data[yesterday]['deaths'];
-        } else {
-          if (celem.data[previousDay]) {
-            confirmed = celem.data[previousDay]['confirmed'];
-            recovered = celem.data[previousDay]['recovered'];
-            deaths = celem.data[previousDay]['deaths'];
-          }
-        }
-      }
+      let confirmed = celem.data[lastDay]['confirmed'];
+      let recovered = celem.data[lastDay]['recovered'];
+      let deaths = celem.data[lastDay]['deaths'];
 
       // Get Turkish or English country names by browser's language
       let countryName;
@@ -579,9 +406,26 @@ export default class Main extends Component {
 
     return (
       <div className="ui container">
-        <PageTitle title={lang.pageTitle} />
+        <PageTitle
+          title={this.props.forecast ? lang.forecastTitle : lang.pageTitle}
+        />
         <br />
         <div>
+          {this.props.forecast && warningForecast && (
+            <div>
+              <div className="ui orange segment">
+                <h4 className="ui header">{lang.forecastWarningTitle}</h4>
+                <p>{lang.forecastWarningText}</p>
+                <div
+                  className="ui orange right corner label close-label"
+                  onClick={() => this.setState({ warningForecast: false })}
+                >
+                  <i className="close icon close-label"></i>
+                </div>
+              </div>
+            </div>
+          )}
+
           <div className="ui segment">
             <div className="ui grid stackable">
               <div className="twelve wide column left aligned">
@@ -719,7 +563,7 @@ export default class Main extends Component {
                     <div className="eight wide column left aligned">
                       <CSVLink
                         className="circular ui icon button blue"
-                        filename={`${today}_covid19.csv`}
+                        filename={`${lastDay}_covid19.csv`}
                         data={csvData}
                         title={lang.exportData}
                       >

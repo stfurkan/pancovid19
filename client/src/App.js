@@ -13,12 +13,15 @@ import About from './components/pages/About';
 
 import lang from './lang.json';
 import covidData from './covid.json';
+import covidForecast from './covidForecast.json';
 import graphData from './graph.json';
+import graphForecast from './graphForecast';
 import updated from './updated.json';
 import './main.css';
 
 function App() {
   let covidDataSorted;
+  let covidForecastSorted;
   let selectedLanguage;
 
   // Sort imported json data by browser's language
@@ -30,6 +33,19 @@ function App() {
   } else {
     selectedLanguage = lang.en;
     covidDataSorted = [...covidData].sort((a, b) =>
+      a.country > b.country ? 1 : -1
+    );
+  }
+
+  // Sort imported forecast json data by browser's language
+  if (navigator.language === 'tr' || navigator.language === 'tr-TR') {
+    selectedLanguage = lang.tr;
+    covidForecastSorted = [...covidForecast].sort((a, b) =>
+      a.countryTr > b.countryTr ? 1 : -1
+    );
+  } else {
+    selectedLanguage = lang.en;
+    covidForecastSorted = [...covidForecast].sort((a, b) =>
       a.country > b.country ? 1 : -1
     );
   }
@@ -60,6 +76,31 @@ function App() {
                   {...props}
                   covidData={covidDataSorted}
                   lang={selectedLanguage.countryPage}
+                />
+              )}
+            />
+            <Route
+              exact
+              path="/forecast"
+              component={props => (
+                <Main
+                  {...props}
+                  covidData={covidForecastSorted}
+                  graphData={graphForecast}
+                  lang={selectedLanguage.mainPage}
+                  forecast={true}
+                />
+              )}
+            />
+            <Route
+              exact
+              path="/forecast/:countryName"
+              component={props => (
+                <Country
+                  {...props}
+                  covidData={covidForecastSorted}
+                  lang={selectedLanguage.countryPage}
+                  forecast={true}
                 />
               )}
             />
