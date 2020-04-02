@@ -1,16 +1,19 @@
 # PAN COVID-19
+
 COVID-19 Statistics Dashboard
 
 ## Getting Started
 
 ### Prequisites
 
-* Node.js 
+- Node.js
+
 ```
 https://nodejs.org/en/download/
 ```
 
-* Python 3
+- Python 3
+
 ```
 https://www.python.org/downloads/
 ```
@@ -18,14 +21,25 @@ https://www.python.org/downloads/
 ### Installation
 
 1. Clone the repo
+
 ```sh
 git clone https://github.com/stfurkan/pancovid19.git
 ```
-2. Change directory to client
+
+2. Install Python package
+
+```sh
+pip3 install pandas pmdarima
+```
+
+3. Change directory to client
+
 ```sh
 cd client
 ```
-3. Install NPM packages
+
+4. Install NPM packages
+
 ```sh
 npm install
 ```
@@ -34,7 +48,8 @@ npm install
 
 ### React (client)
 
-* Change directory to client
+- Change directory to client
+
 ```sh
 cd client
 ```
@@ -57,40 +72,53 @@ Your app is ready to be deployed!
 
 ### Python 3 (python)
 
-* Change directory to python
+- Change directory to python
+
 ```sh
 cd python
 ```
-* Run createCovidJson.py file to create JSON files for the client
+
+- Run createCovidJson.py file to create JSON files for the client
+
 ```sh
 python3 createCovidJson.py
 ```
-* Copy JSON files to client/src directory
+
+- Run forecast.py file to create forecast JSON files
+
+```sh
+python3 forecast.py
+```
+
+- Copy JSON files to client/src directory
+
 ```sh
 cp covid.json ../client/src/.
 cp graph.json ../client/src/.
+cp covidForecast.json ../client/src/.
+cp graphForecast.json ../client/src/.
 cp updated.json ../client/src/.
 ```
 
-* If you want to get most up to date data into the JSON files, you should update your datasets from [JHU CSSE](https://github.com/CSSEGISandData/COVID-19/tree/master/csse_covid_19_data/csse_covid_19_time_series).
-
+- If you want to get most up to date data into the JSON files, you should update your datasets from [JHU CSSE](https://github.com/CSSEGISandData/COVID-19/tree/master/csse_covid_19_data/csse_covid_19_time_series).
 
 ## Features
 
-* Shows total confirmed, recovered and death COVID-19 cases by country
-* Shows daily statistics for every country
-* Compares up to 4 countries
-* Total data for all countries and daily data for every country can be exported as CSV
-* Charts
-* Map
-* Supports Turkish and English languages (based on browser language)
+- Shows total confirmed, recovered and death COVID-19 cases by country
+- Shows daily statistics for every country
+- Shows forecasts using ARIMA model
+- Compares up to 4 countries
+- Total data for all countries and daily data for every country can be exported as CSV
+- Charts
+- Map
+- Supports Turkish and English languages (based on browser language)
 
 ## Built With
 
-* [Node.js](https://nodejs.org/) - Node.js® is a JavaScript runtime built on Chrome's V8 JavaScript engine.
-* [React](https://reactjs.org/) - A JavaScript library for building user interfaces.
-* [Python3](https://www.python.org/) - Python is a programming language that lets you work quickly
-and integrate systems more effectively.
+- [Node.js](https://nodejs.org/) - Node.js® is a JavaScript runtime built on Chrome's V8 JavaScript engine.
+- [React](https://reactjs.org/) - A JavaScript library for building user interfaces.
+- [Python3](https://www.python.org/) - Python is a programming language that lets you work quickly
+  and integrate systems more effectively.
 
 ## Contributing
 
@@ -108,4 +136,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Acknowledgments
 
-* This application uses the data provided by [JHU CSSE](https://github.com/CSSEGISandData/COVID-19).
+- This application uses the data provided by [JHU CSSE](https://github.com/CSSEGISandData/COVID-19).
