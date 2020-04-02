@@ -22,7 +22,8 @@
       "pageTitle": "Homepage",
       "forecastTitle": "Forecast",
       "forecastWarningTitle": "ATTENTION",
-      "forecastWarningText": "Forecast data is for only educational purposes and reliance on this data is strictly prohibited. Use this data at your own risk!"
+      "forecastWarningText": "Forecast data is for only educational purposes and reliance on this data is strictly prohibited. Use this data at your own risk!",
+      "forecastInformation": "This page currently includes the forecast for the next five days."
     },
     "countryPage": {
       "total": "Total",
@@ -46,7 +47,8 @@
       "endDate": "End Date",
       "forecastTitle": "Forecast",
       "forecastWarningTitle": "ATTENTION",
-      "forecastWarningText": "Forecast data is for only educational purposes and reliance on this data is strictly prohibited. Use this data at your own risk!"
+      "forecastWarningText": "Forecast data is for only educational purposes and reliance on this data is strictly prohibited. Use this data at your own risk!",
+      "forecastInformation": "This page currently includes the forecast for the next five days."
     },
     "comparePage": {
       "pageHeader": "Compare Countries",
@@ -112,7 +114,8 @@
       "pageTitle": "Anasayfa",
       "forecastTitle": "Tahmin",
       "forecastWarningTitle": "DİKKAT",
-      "forecastWarningText": "Tahmin verileri eğitim amaçlıdır ve bu verilere hiçbir şekilde güvenmemelisiniz. Bu verileri kullanmak kendi sorumluluğunuzdadır!"
+      "forecastWarningText": "Tahmin verileri eğitim amaçlıdır ve bu verilere hiçbir şekilde güvenmemelisiniz. Bu verileri kullanmak kendi sorumluluğunuzdadır!",
+      "forecastInformation": "Bu sayfada şu anda önümüzdeki beş günün tahminleri bulunmaktadır."
     },
     "countryPage": {
       "total": "Toplam",
@@ -136,7 +139,8 @@
       "endDate": "Bitiş Tarihi",
       "forecastTitle": "Tahmin",
       "forecastWarningTitle": "DİKKAT",
-      "forecastWarningText": "Tahmin verileri eğitim amaçlıdır ve bu verilere hiçbir şekilde güvenmemelisiniz. Bu verileri kullanmak kendi sorumluluğunuzdadır!"
+      "forecastWarningText": "Tahmin verileri eğitim amaçlıdır ve bu verilere hiçbir şekilde güvenmemelisiniz. Bu verileri kullanmak kendi sorumluluğunuzdadır!",
+      "forecastInformation": "Bu sayfada şu anda önümüzdeki beş günün tahminleri bulunmaktadır."
     },
     "comparePage": {
       "pageHeader": "Ülkeleri Karşılaştır",

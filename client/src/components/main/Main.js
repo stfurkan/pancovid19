@@ -416,6 +416,7 @@ export default class Main extends Component {
               <div className="ui orange segment">
                 <h4 className="ui header">{lang.forecastWarningTitle}</h4>
                 <p>{lang.forecastWarningText}</p>
+                <p>{lang.forecastInformation}</p>
                 <div
                   className="ui orange right corner label close-label"
                   onClick={() => this.setState({ warningForecast: false })}
