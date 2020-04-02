@@ -34,6 +34,7 @@ export default class Country extends Component {
       warningDateRange: false,
       warningDateToday: false,
       warningDateInvalid: false,
+      warningForecast: true,
       filtered: false
     };
   }
@@ -226,12 +227,35 @@ export default class Country extends Component {
       warningDateInvalid,
       warningDateRange,
       warningDateToday,
+      warningForecast,
       filtered
     } = this.state;
     return (
       <div className="ui container">
-        <PageTitle title={countryName} />
+        <PageTitle
+          title={
+            this.props.forecast
+              ? `${lang.forecastTitle} - ${countryName}`
+              : countryName
+          }
+        />
         <br />
+        {this.props.forecast && warningForecast && (
+          <div>
+            <div className="ui orange segment">
+              <h4 className="ui header">{lang.forecastWarningTitle}</h4>
+              <p>{lang.forecastWarningText}</p>
+              <div
+                className="ui orange right corner label close-label"
+                onClick={() => this.setState({ warningForecast: false })}
+              >
+                <i className="close icon close-label"></i>
+              </div>
+            </div>
+            <br />
+          </div>
+        )}
+
         <div
           className={
             warningDate ||
