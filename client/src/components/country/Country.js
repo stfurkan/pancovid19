@@ -274,11 +274,12 @@ export default class Country extends Component {
               <i className="exclamation triangle icon"></i>
               {lang.warningDate}
             </b>
+
             <div
-              className="circular ui icon red button right aligned"
+              className="ui red right corner label close-label"
               onClick={() => this.setState({ warningDate: false })}
             >
-              <i className="close icon"></i>
+              <i className="close icon close-label"></i>
             </div>
           </div>
 
@@ -291,11 +292,12 @@ export default class Country extends Component {
               <i className="exclamation triangle icon"></i>
               {lang.warningDateRange}
             </b>
+
             <div
-              className="circular ui icon red button"
+              className="ui red right corner label close-label"
               onClick={() => this.setState({ warningDateRange: false })}
             >
-              <i className="close icon"></i>
+              <i className="close icon close-label"></i>
             </div>
           </div>
 
@@ -308,11 +310,12 @@ export default class Country extends Component {
               <i className="exclamation triangle icon"></i>
               {lang.warningDateToday}
             </b>
+
             <div
-              className="circular ui icon red button"
+              className="ui red right corner label close-label"
               onClick={() => this.setState({ warningDateToday: false })}
             >
-              <i className="close icon"></i>
+              <i className="close icon close-label"></i>
             </div>
           </div>
 
@@ -325,11 +328,12 @@ export default class Country extends Component {
               <i className="exclamation triangle icon"></i>
               {lang.warningDateInvalid}
             </b>
+
             <div
-              className="circular ui icon red button"
+              className="ui red right corner label close-label"
               onClick={() => this.setState({ warningDateInvalid: false })}
             >
-              <i className="close icon"></i>
+              <i className="close icon close-label"></i>
             </div>
           </div>
 
