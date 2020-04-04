@@ -393,7 +393,7 @@ export default class Main extends Component {
       tableItems.push(
         <tr
           key={celem.country}
-          className="table-row"
+          className='table-row'
           onClick={() => this.onClickTableRow(celem.country)}
         >
           <td>{countryName}</td>
@@ -405,7 +405,7 @@ export default class Main extends Component {
     });
 
     return (
-      <div className="ui container">
+      <div className='ui container'>
         <PageTitle
           title={this.props.forecast ? lang.forecastTitle : lang.pageTitle}
         />
@@ -413,24 +413,24 @@ export default class Main extends Component {
         <div>
           {this.props.forecast && warningForecast && (
             <div>
-              <div className="ui orange segment">
-                <h4 className="ui header">{lang.forecastWarningTitle}</h4>
+              <div className='ui orange segment'>
+                <h4 className='ui header'>{lang.forecastWarningTitle}</h4>
                 <p>{lang.forecastWarningText}</p>
                 <p>{lang.forecastInformation}</p>
                 <div
-                  className="ui orange right corner label close-label"
+                  className='ui orange right corner label close-label'
                   onClick={() => this.setState({ warningForecast: false })}
                 >
-                  <i className="close icon close-label"></i>
+                  <i className='close icon close-label'></i>
                 </div>
               </div>
             </div>
           )}
 
-          <div className="ui segment">
-            <div className="ui grid stackable">
-              <div className="twelve wide column left aligned">
-                <div className="ui segment raised">
+          <div className='ui segment'>
+            <div className='ui grid stackable'>
+              <div className='twelve wide column left aligned'>
+                <div className='ui segment raised'>
                   <Map
                     covidData={covidData}
                     lang={lang}
@@ -438,46 +438,46 @@ export default class Main extends Component {
                   />
                 </div>
               </div>
-              <div className="four wide column right aligned">
-                <div className="ui segment raised general-data">
-                  <div className="ui equal width center aligned padded grid container">
-                    <div className="row">
-                      <div className="column">
-                        <div className="ui large header">{lang.total}</div>
+              <div className='four wide column right aligned'>
+                <div className='ui segment raised general-data'>
+                  <div className='ui equal width center aligned padded grid container'>
+                    <div className='row'>
+                      <div className='column'>
+                        <div className='ui large header'>{lang.total}</div>
 
-                        <div className="ui fitted divider"></div>
+                        <div className='ui fitted divider'></div>
                       </div>
                     </div>
-                    <div className="row">
-                      <div className="column">
-                        <h2 className="ui orange header">
-                          <div className="content">
+                    <div className='row'>
+                      <div className='column'>
+                        <h2 className='ui orange header'>
+                          <div className='content'>
                             {lang.confirmed}
-                            <div className="sub header total-number">
+                            <div className='sub header total-number'>
                               {totalConfirmed.toLocaleString()}
                             </div>
                           </div>
                         </h2>
                       </div>
                     </div>
-                    <div className="row">
-                      <div className="column">
-                        <h2 className="ui green header">
-                          <div className="content">
+                    <div className='row'>
+                      <div className='column'>
+                        <h2 className='ui green header'>
+                          <div className='content'>
                             {lang.recovered}
-                            <div className="sub header total-number">
+                            <div className='sub header total-number'>
                               {totalRecovered.toLocaleString()}
                             </div>
                           </div>
                         </h2>
                       </div>
                     </div>
-                    <div className="row">
-                      <div className="column">
-                        <h2 className="ui red header">
-                          <div className="content">
+                    <div className='row'>
+                      <div className='column'>
+                        <h2 className='ui red header'>
+                          <div className='content'>
                             {lang.deaths}
-                            <div className="sub header total-number">
+                            <div className='sub header total-number'>
                               {totalDeaths.toLocaleString()}
                             </div>
                           </div>
@@ -495,18 +495,18 @@ export default class Main extends Component {
 
         <div>
           <h3
-            className="ui top attached header table-row left aligned"
+            className='ui top attached header table-row left aligned'
             onClick={() => this.setState({ graph: !this.state.graph })}
           >
             {graph ? (
-              <i className="chevron down icon"></i>
+              <i className='chevron down icon'></i>
             ) : (
-              <i className="chevron right icon"></i>
+              <i className='chevron right icon'></i>
             )}
             {lang.graphTitle}
           </h3>
           <div className={graph ? 'ui attached segment' : 'hide-element'}>
-            <div className="ui center aligned grid">
+            <div className='ui center aligned grid'>
               <GeneralChart graphData={this.props.graphData} lang={lang} />
             </div>
           </div>
@@ -515,15 +515,15 @@ export default class Main extends Component {
         <br />
 
         <div>
-          <table className="ui sortable unstackable celled table">
+          <table className='ui sortable unstackable celled table'>
             <thead>
               <tr>
                 <th onClick={() => this.onClickSort('country')}>
                   {lang.country}
                   {sorted.country === 1 ? (
-                    <i className="caret down icon"></i>
+                    <i className='caret down icon'></i>
                   ) : sorted.country === 2 ? (
-                    <i className="caret up icon"></i>
+                    <i className='caret up icon'></i>
                   ) : (
                     ''
                   )}
@@ -531,9 +531,9 @@ export default class Main extends Component {
                 <th onClick={() => this.onClickSort('confirmed')}>
                   {lang.confirmed}
                   {sorted.confirmed === 1 ? (
-                    <i className="caret down icon"></i>
+                    <i className='caret down icon'></i>
                   ) : sorted.confirmed === 2 ? (
-                    <i className="caret up icon"></i>
+                    <i className='caret up icon'></i>
                   ) : (
                     ''
                   )}
@@ -541,9 +541,9 @@ export default class Main extends Component {
                 <th onClick={() => this.onClickSort('recovered')}>
                   {lang.recovered}
                   {sorted.recovered === 1 ? (
-                    <i className="caret down icon"></i>
+                    <i className='caret down icon'></i>
                   ) : sorted.recovered === 2 ? (
-                    <i className="caret up icon"></i>
+                    <i className='caret up icon'></i>
                   ) : (
                     ''
                   )}
@@ -551,9 +551,9 @@ export default class Main extends Component {
                 <th onClick={() => this.onClickSort('deaths')}>
                   {lang.deaths}
                   {sorted.deaths === 1 ? (
-                    <i className="caret down icon"></i>
+                    <i className='caret down icon'></i>
                   ) : sorted.deaths === 2 ? (
-                    <i className="caret up icon"></i>
+                    <i className='caret up icon'></i>
                   ) : (
                     ''
                   )}
@@ -563,42 +563,42 @@ export default class Main extends Component {
             <tbody>{tableItems}</tbody>
             <tfoot>
               <tr>
-                <th colSpan="4">
-                  <div className="ui grid stackable">
-                    <div className="eight wide column left aligned">
+                <th colSpan='4'>
+                  <div className='ui grid stackable'>
+                    <div className='eight wide column left aligned'>
                       <CSVLink
-                        className="circular ui icon button blue"
+                        className='circular ui icon button blue'
                         filename={`${lastDay}_covid19.csv`}
                         data={csvData}
                         title={lang.exportData}
                       >
-                        <i className="arrow alternate circle down outline large icon"></i>
+                        <i className='arrow alternate circle down outline large icon'></i>
                       </CSVLink>
-                      <div className="ui input">
-                        <div className="ui icon input">
+                      <div className='ui input'>
+                        <div className='ui icon input'>
                           <input
-                            className="prompt"
-                            type="text"
+                            className='prompt'
+                            type='text'
                             placeholder={lang.searchCountry}
-                            name="searchCountry"
+                            name='searchCountry'
                             value={this.state.searchCountry}
                             onChange={this.onChangeSearch}
                           />
                           {this.state.searchCountry === '' ? (
-                            <i className="search icon"></i>
+                            <i className='search icon'></i>
                           ) : (
                             <i
-                              className="circular close link icon"
+                              className='circular close link icon'
                               onClick={() =>
                                 this.setState({ searchCountry: '' })
                               }
                             ></i>
                           )}
                         </div>
-                        <div className="results"></div>
+                        <div className='results'></div>
                       </div>
                     </div>
-                    <div className="eight wide column right aligned">
+                    <div className='eight wide column right aligned'>
                       <Pagination
                         items={this.state.pageList}
                         onChangePage={this.onChangePage}

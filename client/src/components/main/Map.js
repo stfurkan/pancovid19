@@ -5,8 +5,8 @@ import L from 'leaflet';
 
 // Popup content component for main map
 const PopupContent = props => (
-  <div className="ui list">
-    <div className="item">
+  <div className='ui list'>
+    <div className='item'>
       <b>{props.lang.country}:</b>{' '}
       <Router>
         <Link
@@ -20,13 +20,13 @@ const PopupContent = props => (
         </Link>
       </Router>
     </div>
-    <div className="item">
+    <div className='item'>
       <b>{props.lang.confirmed}:</b> {props.confirmed.toLocaleString()}
     </div>
-    <div className="item">
+    <div className='item'>
       <b>{props.lang.recovered}:</b> {props.recovered.toLocaleString()}
     </div>
-    <div className="item">
+    <div className='item'>
       <b>{props.lang.deaths}:</b> {props.deaths.toLocaleString()}
     </div>
   </div>
@@ -122,6 +122,6 @@ export default class Map extends Component {
   }
 
   render() {
-    return <div ref={this.mapRef} id="dataMap" />;
+    return <div ref={this.mapRef} id='dataMap' />;
   }
 }
