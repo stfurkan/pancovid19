@@ -33,6 +33,21 @@ const PopupContent = props => (
 );
 
 export default class Map extends Component {
+  constructor(props) {
+    super(props);
+
+    const { covidData } = props;
+
+    let lastDay;
+    for (let ddate in covidData[0].data) {
+      lastDay = ddate;
+    }
+
+    this.state = {
+      lastDay: lastDay
+    };
+  }
+
   mapRef = React.createRef();
 
   calculateRadius = conf => {
@@ -41,6 +56,14 @@ export default class Map extends Component {
   };
 
   componentDidMount() {
+    let lastDay;
+    for (let ddate in this.props.covidData[0].data) {
+      lastDay = ddate;
+    }
+    this.setState({
+      lastDay: lastDay
+    });
+
     this.map = L.map('dataMap', {
       zoom: 1,
       minZoom: 1,
@@ -59,14 +82,6 @@ export default class Map extends Component {
       ]
     });
 
-    let today = new Date().toISOString().split('T')[0];
-    let yesterday = (d => new Date(d.setDate(d.getDate() - 1)))(new Date())
-      .toISOString()
-      .split('T')[0];
-    let previousDay = (d => new Date(d.setDate(d.getDate() - 2)))(new Date())
-      .toISOString()
-      .split('T')[0];
-
     const { covidData } = this.props;
     covidData.forEach(celem => {
       let confirmed = 0;
@@ -74,23 +89,9 @@ export default class Map extends Component {
       let deaths = 0;
 
       // Get most up to date data for countries
-      if (celem.data[today]) {
-        confirmed = celem.data[today]['confirmed'];
-        recovered = celem.data[today]['recovered'];
-        deaths = celem.data[today]['deaths'];
-      } else {
-        if (celem.data[yesterday]) {
-          confirmed = celem.data[yesterday]['confirmed'];
-          recovered = celem.data[yesterday]['recovered'];
-          deaths = celem.data[yesterday]['deaths'];
-        } else {
-          if (celem.data[previousDay]) {
-            confirmed = celem.data[previousDay]['confirmed'];
-            recovered = celem.data[previousDay]['recovered'];
-            deaths = celem.data[previousDay]['deaths'];
-          }
-        }
-      }
+      confirmed = celem.data[this.state.lastDay]['confirmed'];
+      recovered = celem.data[this.state.lastDay]['recovered'];
+      deaths = celem.data[this.state.lastDay]['deaths'];
 
       const { lang, forecast } = this.props;
 
