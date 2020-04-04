@@ -35,6 +35,11 @@ const PopupContent = props => (
 export default class Map extends Component {
   mapRef = React.createRef();
 
+  calculateRadius = conf => {
+    let radius = 2 * Math.log(conf / 10);
+    return radius;
+  };
+
   componentDidMount() {
     this.map = L.map('dataMap', {
       zoom: 1,
@@ -111,9 +116,19 @@ export default class Map extends Component {
       );
       let popupContentHtml = ReactDOMServer.renderToString(popupContentNode);
 
-      L.marker([celem.latitude, celem.longitude])
-        .bindPopup(popupContentHtml)
-        .addTo(this.map);
+      let circle = L.circleMarker([celem.latitude, celem.longitude], {
+        radius: this.calculateRadius(confirmed),
+        color: 'red',
+        fillOpacity: 0.5,
+        stroke: false
+      });
+
+      circle.on('mouseover', function (e) {
+        this.openPopup();
+      });
+
+      circle.bindPopup(popupContentHtml);
+      circle.addTo(this.map);
     });
   }
 
