@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { CSVLink } from 'react-csv';
+import CountUp from 'react-countup';
 
 import Pagination from '../layouts/Pagination';
 import PageTitle from '../layouts/PageTitle';
@@ -425,6 +426,14 @@ export default class Main extends Component {
       );
     });
 
+    // Determine thousand separator
+    let separator = ',';
+    if (navigator.language === 'tr' || navigator.language === 'tr-TR') {
+      separator = '.';
+    } else {
+      separator = ',';
+    }
+
     return (
       <div className='ui container'>
         <PageTitle
@@ -460,7 +469,10 @@ export default class Main extends Component {
                             <div className='content'>
                               {lang.total} {lang.confirmed}
                               <div className='sub header total-number'>
-                                {totalConfirmed.toLocaleString()}
+                                <CountUp
+                                  end={totalConfirmed}
+                                  separator={separator}
+                                />
                               </div>
                             </div>
                           </h2>
@@ -470,7 +482,10 @@ export default class Main extends Component {
                             <div className='content'>
                               {lang.total} {lang.recovered}
                               <div className='sub header total-number'>
-                                {totalRecovered.toLocaleString()}
+                                <CountUp
+                                  end={totalRecovered}
+                                  separator={separator}
+                                />
                               </div>
                             </div>
                           </h2>
@@ -480,7 +495,10 @@ export default class Main extends Component {
                             <div className='content'>
                               {lang.total} {lang.deaths}
                               <div className='sub header total-number'>
-                                {totalDeaths.toLocaleString()}
+                                <CountUp
+                                  end={totalDeaths}
+                                  separator={separator}
+                                />
                               </div>
                             </div>
                           </h2>
@@ -517,7 +535,10 @@ export default class Main extends Component {
                             <div className='content'>
                               {lang.new} {lang.confirmed}
                               <div className='sub header total-number'>
-                                {lastDayConfirmed.toLocaleString()}
+                                <CountUp
+                                  end={lastDayConfirmed}
+                                  separator={separator}
+                                />
                               </div>
                             </div>
                           </div>
@@ -530,7 +551,10 @@ export default class Main extends Component {
                             <div className='content'>
                               {lang.new} {lang.recovered}
                               <div className='sub header total-number'>
-                                {lastDayRecovered.toLocaleString()}
+                                <CountUp
+                                  end={lastDayRecovered}
+                                  separator={separator}
+                                />
                               </div>
                             </div>
                           </div>
@@ -543,7 +567,10 @@ export default class Main extends Component {
                             <div className='content'>
                               {lang.new} {lang.deaths}
                               <div className='sub header total-number'>
-                                {lastDayDeaths.toLocaleString()}
+                                <CountUp
+                                  end={lastDayDeaths}
+                                  separator={separator}
+                                />
                               </div>
                             </div>
                           </div>
