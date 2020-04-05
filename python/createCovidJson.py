@@ -301,6 +301,9 @@ countryDict["Netherlands"]["longitude"] = 5.2913
 countryDict["France"]["latitude"] = 46.2276
 countryDict["France"]["longitude"] = 2.2137
 
+countryDict["Denmark"]["latitude"] = 56.2639
+countryDict["Denmark"]["longitude"] = 9.5018
+
 
 countryList = []
 for key in countryDict.keys():
