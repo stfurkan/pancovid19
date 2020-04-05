@@ -24,7 +24,7 @@ function Footer({ lang, lastUpdated }) {
             target='_blank'
             rel='noopener noreferrer'
           >
-            <i className='github icon'></i>
+            <i className='github icon'></i>GitHub
           </a>
         </div>
         <div>{lang.text}</div>
