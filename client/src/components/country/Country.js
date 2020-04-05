@@ -460,7 +460,7 @@ export default class Country extends Component {
                         </div>
                       </div>
 
-                      <div className='row'>
+                      <div className='row general-data-row'>
                         <div className='column'>
                           <div className='ui red large header'>
                             <div className='content'>

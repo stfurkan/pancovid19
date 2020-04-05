@@ -537,7 +537,7 @@ export default class Main extends Component {
                         </div>
                       </div>
 
-                      <div className='row'>
+                      <div className='row general-data-row'>
                         <div className='column'>
                           <div className='ui red large header'>
                             <div className='content'>
