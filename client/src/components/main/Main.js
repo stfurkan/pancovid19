@@ -507,6 +507,7 @@ export default class Main extends Component {
                       <div className='row general-data-row'>
                         <div className='column'>
                           <div className='ui medium blue header'>{lastDay}</div>
+                          <div className='ui fitted divider'></div>
                         </div>
                       </div>
 
