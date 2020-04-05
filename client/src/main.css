@@ -6,6 +6,11 @@
 .general-data {
   height: 330px;
   width: 100%;
+  background-color: white !important;
+}
+
+.general-data-row {
+  padding-bottom: 0 !important;
 }
 
 .table-row:hover {
