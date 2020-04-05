@@ -3,28 +3,28 @@ import { Link } from 'react-router-dom';
 
 function Footer({ lang, lastUpdated }) {
   return (
-    <div className="ui vertical footer segment">
-      <div className="ui center aligned container">
-        <div className="ui section divider"></div>
+    <div className='ui vertical footer segment'>
+      <div className='ui center aligned container'>
+        <div className='ui section divider'></div>
         <div>
           <i>
             {lang.lastUpdated}: {lastUpdated}
           </i>
         </div>
-        <div className="ui horizontal small divided link list">
-          <Link className="item" to="/">
+        <div className='ui horizontal small divided link list'>
+          <Link className='item' to='/'>
             {lang.homePage}
           </Link>
-          <Link className="item" to="/about">
+          <Link className='item' to='/about'>
             {lang.about}
           </Link>
           <a
-            className="item"
-            href="https://www.github.com/stfurkan/pancovid19"
-            target="_blank"
-            rel="noopener noreferrer"
+            className='item'
+            href='https://www.github.com/stfurkan/pancovid19'
+            target='_blank'
+            rel='noopener noreferrer'
           >
-            <i className="github icon"></i>
+            <i className='github icon'></i>
           </a>
         </div>
         <div>{lang.text}</div>

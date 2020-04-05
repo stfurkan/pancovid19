@@ -8,18 +8,18 @@ function Header({ lang, history }) {
   const { pathname } = history.location;
 
   return (
-    <div className="ui container ">
-      <div className="ui divider"></div>
-      <div className="ui stackable secondary menu">
-        <div className="item">
-          <Link to="/">
-            <div className="ui blue ribbon big label">
-              <img src={logo} alt="logo" /> {lang.title}
+    <div className='ui container '>
+      <div className='ui divider'></div>
+      <div className='ui stackable secondary menu'>
+        <div className='item'>
+          <Link to='/'>
+            <div className='ui blue ribbon big label'>
+              <img src={logo} alt='logo' /> {lang.title}
             </div>
           </Link>
         </div>
         <Link
-          to="/"
+          to='/'
           className={
             pathname === '/'
               ? 'ui orange basic big button item header-button'
@@ -29,7 +29,7 @@ function Header({ lang, history }) {
           {lang.home}
         </Link>
         <Link
-          to="/compare"
+          to='/compare'
           className={
             pathname === '/compare'
               ? 'ui orange basic big button item header-button'
@@ -39,7 +39,7 @@ function Header({ lang, history }) {
           {lang.compare}
         </Link>
         <Link
-          to="/forecast"
+          to='/forecast'
           className={
             pathname === '/forecast'
               ? 'ui orange basic big button item header-button'
@@ -48,9 +48,9 @@ function Header({ lang, history }) {
         >
           {lang.forecast}
         </Link>
-        <div className="right menu">
+        <div className='right menu'>
           <Link
-            to="/about"
+            to='/about'
             className={
               pathname === '/about'
                 ? 'ui orange basic big button item header-button'
@@ -61,14 +61,14 @@ function Header({ lang, history }) {
           </Link>
         </div>
       </div>
-      <div className="ui horizontal divider header">
+      <div className='ui fitted horizontal divider header'>
         <a
-          className="ui blue large label"
+          className='ui blue large label'
           href={`http://twitter.com/share?text=${lang.stayHome}&url=https://pancovid19.com&hashtags=${lang.tagStayHome}`}
-          target="_blank"
-          rel="noopener noreferrer"
+          target='_blank'
+          rel='noopener noreferrer'
         >
-          <i className="home icon"></i>#{lang.tagStayHome}
+          <i className='home icon'></i>#{lang.tagStayHome}
         </a>
       </div>
     </div>
