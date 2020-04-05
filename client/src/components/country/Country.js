@@ -373,36 +373,44 @@ export default class Country extends Component {
           <h1 className='ui top attached header'>{countryName}</h1>
           <div className='ui attached segment'>
             <div className='ui grid stackable'>
-              <div className='row ui segment raised'>
-                <div className='five wide column'>
-                  <h2 className='ui orange header'>
-                    <div className='content'>
-                      {lang.total} {lang.confirmed}
-                      <div className='sub header total-number'>
-                        {totalConfirmed.toLocaleString()}
+              <div className='row'>
+                <div className='column'>
+                  <div className='ui segment raised'>
+                    <div className='ui grid stackable'>
+                      <div className='row'>
+                        <div className='five wide column'>
+                          <h2 className='ui orange header'>
+                            <div className='content'>
+                              {lang.total} {lang.confirmed}
+                              <div className='sub header total-number'>
+                                {totalConfirmed.toLocaleString()}
+                              </div>
+                            </div>
+                          </h2>
+                        </div>
+                        <div className='six wide column'>
+                          <h2 className='ui green header'>
+                            <div className='content'>
+                              {lang.total} {lang.recovered}
+                              <div className='sub header total-number'>
+                                {totalRecovered.toLocaleString()}
+                              </div>
+                            </div>
+                          </h2>
+                        </div>
+                        <div className='five wide column'>
+                          <h2 className='ui red header'>
+                            <div className='content'>
+                              {lang.total} {lang.deaths}
+                              <div className='sub header total-number'>
+                                {totalDeaths.toLocaleString()}
+                              </div>
+                            </div>
+                          </h2>
+                        </div>
                       </div>
                     </div>
-                  </h2>
-                </div>
-                <div className='six wide column'>
-                  <h2 className='ui green header'>
-                    <div className='content'>
-                      {lang.total} {lang.recovered}
-                      <div className='sub header total-number'>
-                        {totalRecovered.toLocaleString()}
-                      </div>
-                    </div>
-                  </h2>
-                </div>
-                <div className='five wide column'>
-                  <h2 className='ui red header'>
-                    <div className='content'>
-                      {lang.total} {lang.deaths}
-                      <div className='sub header total-number'>
-                        {totalDeaths.toLocaleString()}
-                      </div>
-                    </div>
-                  </h2>
+                  </div>
                 </div>
               </div>
 
