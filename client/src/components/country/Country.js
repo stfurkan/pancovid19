@@ -208,10 +208,24 @@ export default class Country extends Component {
     let totalRecovered = 0;
     let totalDeaths = 0;
 
+    let lastDayConfirmed = 0;
+    let lastDayRecovered = 0;
+    let lastDayDeaths = 0;
+
+    // Get the day before the last day
+    let previousDay = new Date(lastDay);
+    previousDay.setDate(previousDay.getDate() - 1);
+    previousDay = previousDay.toISOString().split('T')[0];
+
     // Get most up to date data for countries
     totalConfirmed = cdata.data[lastDay]['confirmed'];
     totalRecovered = cdata.data[lastDay]['recovered'];
     totalDeaths = cdata.data[lastDay]['deaths'];
+
+    // Get last day's data for countries
+    lastDayConfirmed = totalConfirmed - cdata.data[previousDay]['confirmed'];
+    lastDayRecovered = totalRecovered - cdata.data[previousDay]['recovered'];
+    lastDayDeaths = totalDeaths - cdata.data[previousDay]['deaths'];
 
     // Get Turkish or English country names by browser's language
     let countryName;
@@ -231,7 +245,7 @@ export default class Country extends Component {
       filtered
     } = this.state;
     return (
-      <div className="ui container">
+      <div className='ui container'>
         <PageTitle
           title={
             this.props.forecast
@@ -242,15 +256,15 @@ export default class Country extends Component {
         <br />
         {this.props.forecast && warningForecast && (
           <div>
-            <div className="ui orange segment">
-              <h4 className="ui header">{lang.forecastWarningTitle}</h4>
+            <div className='ui orange segment'>
+              <h4 className='ui header'>{lang.forecastWarningTitle}</h4>
               <p>{lang.forecastWarningText}</p>
               <p>{lang.forecastInformation}</p>
               <div
-                className="ui orange right corner label close-label"
+                className='ui orange right corner label close-label'
                 onClick={() => this.setState({ warningForecast: false })}
               >
-                <i className="close icon close-label"></i>
+                <i className='close icon close-label'></i>
               </div>
             </div>
             <br />
@@ -272,15 +286,15 @@ export default class Country extends Component {
             className={warningDate ? 'ui red segment raised' : 'hide-element'}
           >
             <b>
-              <i className="exclamation triangle icon"></i>
+              <i className='exclamation triangle icon'></i>
               {lang.warningDate}
             </b>
 
             <div
-              className="ui red right corner label close-label"
+              className='ui red right corner label close-label'
               onClick={() => this.setState({ warningDate: false })}
             >
-              <i className="close icon close-label"></i>
+              <i className='close icon close-label'></i>
             </div>
           </div>
 
@@ -290,15 +304,15 @@ export default class Country extends Component {
             }
           >
             <b>
-              <i className="exclamation triangle icon"></i>
+              <i className='exclamation triangle icon'></i>
               {lang.warningDateRange}
             </b>
 
             <div
-              className="ui red right corner label close-label"
+              className='ui red right corner label close-label'
               onClick={() => this.setState({ warningDateRange: false })}
             >
-              <i className="close icon close-label"></i>
+              <i className='close icon close-label'></i>
             </div>
           </div>
 
@@ -308,15 +322,15 @@ export default class Country extends Component {
             }
           >
             <b>
-              <i className="exclamation triangle icon"></i>
+              <i className='exclamation triangle icon'></i>
               {lang.warningDateToday}
             </b>
 
             <div
-              className="ui red right corner label close-label"
+              className='ui red right corner label close-label'
               onClick={() => this.setState({ warningDateToday: false })}
             >
-              <i className="close icon close-label"></i>
+              <i className='close icon close-label'></i>
             </div>
           </div>
 
@@ -326,27 +340,27 @@ export default class Country extends Component {
             }
           >
             <b>
-              <i className="exclamation triangle icon"></i>
+              <i className='exclamation triangle icon'></i>
               {lang.warningDateInvalid}
             </b>
 
             <div
-              className="ui red right corner label close-label"
+              className='ui red right corner label close-label'
               onClick={() => this.setState({ warningDateInvalid: false })}
             >
-              <i className="close icon close-label"></i>
+              <i className='close icon close-label'></i>
             </div>
           </div>
 
           <div
             className={filtered ? 'ui green segment raised' : 'hide-element'}
           >
-            <div className="ui header">
-              <i className="thumbs up outline icon"></i>
+            <div className='ui header'>
+              <i className='thumbs up outline icon'></i>
               {lang.filterApplied}
             </div>
             <div
-              className="ui green button"
+              className='ui green button'
               onClick={() => this.onClearFilter()}
             >
               {lang.clearFilter}
@@ -356,63 +370,99 @@ export default class Country extends Component {
         </div>
 
         <div>
-          <h1 className="ui top attached header">{countryName}</h1>
-          <div className="ui attached segment">
-            <div className="ui grid stackable">
-              <div className="twelve wide column left aligned">
-                <div className="ui segment raised">
-                  <Map
-                    latitude={cdata.latitude}
-                    longitude={cdata.longitude}
-                    country={countryName}
-                    lang={lang}
-                  />
+          <h1 className='ui top attached header'>{countryName}</h1>
+          <div className='ui attached segment'>
+            <div className='ui grid stackable'>
+              <div className='row ui segment raised'>
+                <div className='five wide column'>
+                  <h2 className='ui orange header'>
+                    <div className='content'>
+                      {lang.total} {lang.confirmed}
+                      <div className='sub header total-number'>
+                        {totalConfirmed.toLocaleString()}
+                      </div>
+                    </div>
+                  </h2>
+                </div>
+                <div className='six wide column'>
+                  <h2 className='ui green header'>
+                    <div className='content'>
+                      {lang.total} {lang.recovered}
+                      <div className='sub header total-number'>
+                        {totalRecovered.toLocaleString()}
+                      </div>
+                    </div>
+                  </h2>
+                </div>
+                <div className='five wide column'>
+                  <h2 className='ui red header'>
+                    <div className='content'>
+                      {lang.total} {lang.deaths}
+                      <div className='sub header total-number'>
+                        {totalDeaths.toLocaleString()}
+                      </div>
+                    </div>
+                  </h2>
                 </div>
               </div>
-              <div className="four wide column right aligned">
-                <div className="ui segment raised general-data">
-                  <div className="ui equal width center aligned padded grid container">
-                    <div className="row">
-                      <div className="column">
-                        <div className="ui large header">{lang.total}</div>
 
-                        <div className="ui fitted divider"></div>
+              <div className='row'>
+                <div className='twelve wide column left aligned'>
+                  <div className='ui segment raised'>
+                    <Map
+                      latitude={cdata.latitude}
+                      longitude={cdata.longitude}
+                      country={countryName}
+                      lang={lang}
+                    />
+                  </div>
+                </div>
+                <div className='four wide column right aligned'>
+                  <div className='ui placeholder segment raised general-data'>
+                    <div className='ui center aligned grid'>
+                      <div className='row general-data-row'>
+                        <div className='column'>
+                          <div className='ui medium blue header'>{lastDay}</div>
+                        </div>
                       </div>
-                    </div>
-                    <div className="row">
-                      <div className="column">
-                        <h2 className="ui orange header">
-                          <div className="content">
-                            {lang.confirmed}
-                            <div className="sub header total-number">
-                              {totalConfirmed.toLocaleString()}
+
+                      <div className='row general-data-row'>
+                        <div className='column'>
+                          <div className='ui orange large header'>
+                            <div className='content'>
+                              {lang.new} {lang.confirmed}
+                              <div className='sub header total-number'>
+                                {lastDayConfirmed.toLocaleString()}
+                              </div>
                             </div>
                           </div>
-                        </h2>
+                        </div>
                       </div>
-                    </div>
-                    <div className="row">
-                      <div className="column">
-                        <h2 className="ui green header">
-                          <div className="content">
-                            {lang.recovered}
-                            <div className="sub header total-number">
-                              {totalRecovered.toLocaleString()}
+
+                      <div className='row general-data-row'>
+                        <div className='column'>
+                          <div className='ui green large header'>
+                            <div className='content'>
+                              {lang.new} {lang.recovered}
+                              <div className='sub header total-number'>
+                                {lastDayRecovered.toLocaleString()}
+                              </div>
                             </div>
                           </div>
-                        </h2>
+                        </div>
                       </div>
-                    </div>
-                    <div className="row">
-                      <div className="column">
-                        <h2 className="ui red header">
-                          <div className="content">
-                            {lang.deaths}
-                            <div className="sub header total-number">
-                              {totalDeaths.toLocaleString()}
+
+                      <div className='row'>
+                        <div className='column'>
+                          <div className='ui red large header'>
+                            <div className='content'>
+                              {lang.new} {lang.deaths}
+                              <div className='sub header total-number'>
+                                {lastDayDeaths.toLocaleString()}
+                              </div>
                             </div>
                           </div>
-                        </h2>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -426,13 +476,13 @@ export default class Country extends Component {
 
         <div>
           <h3
-            className="ui top attached header table-row left aligned"
+            className='ui top attached header table-row left aligned'
             onClick={() => this.setState({ graph: !this.state.graph })}
           >
             {this.state.graph ? (
-              <i className="chevron down icon"></i>
+              <i className='chevron down icon'></i>
             ) : (
-              <i className="chevron right icon"></i>
+              <i className='chevron right icon'></i>
             )}
             {lang.graphTitle}
           </h3>
@@ -441,7 +491,7 @@ export default class Country extends Component {
               this.state.graph ? 'ui attached segment' : 'hide-element'
             }
           >
-            <div className="ui center aligned grid">
+            <div className='ui center aligned grid'>
               <GeneralChart graphData={this.state.graphData} lang={lang} />
             </div>
           </div>
@@ -450,7 +500,7 @@ export default class Country extends Component {
         <br />
 
         <div>
-          <table className="ui unstackable celled table">
+          <table className='ui unstackable celled table'>
             <thead>
               <tr>
                 <th>{lang.date}</th>
@@ -471,19 +521,19 @@ export default class Country extends Component {
             </tbody>
             <tfoot>
               <tr>
-                <th colSpan="4">
-                  <div className="ui grid stackable">
-                    <div className="eight wide column left aligned">
+                <th colSpan='4'>
+                  <div className='ui grid stackable'>
+                    <div className='eight wide column left aligned'>
                       <CSVLink
-                        className="circular ui icon button blue"
+                        className='circular ui icon button blue'
                         filename={`${countryName}_${lastDay}_covid19.csv`}
                         data={this.exportCsv()}
                         title={lang.exportData}
                       >
-                        <i className="arrow alternate circle down outline large icon"></i>
+                        <i className='arrow alternate circle down outline large icon'></i>
                       </CSVLink>
                     </div>
-                    <div className="eight wide column right aligned">
+                    <div className='eight wide column right aligned'>
                       <Pagination
                         items={this.state.pageList}
                         onChangePage={this.onChangePage}
@@ -500,29 +550,29 @@ export default class Country extends Component {
         </div>
 
         <div>
-          <div className="ui segment">
-            <form className="ui form">
-              <h4 className="ui dividing header left aligned">
+          <div className='ui segment'>
+            <form className='ui form'>
+              <h4 className='ui dividing header left aligned'>
                 {lang.filterTitle}
               </h4>
-              <div className="field">
-                <div className="two fields">
-                  <div className="field">
+              <div className='field'>
+                <div className='two fields'>
+                  <div className='field'>
                     <label>{lang.startDate}</label>
                     <input
-                      type="date"
-                      min="2020-01-22"
-                      name="startDate"
+                      type='date'
+                      min='2020-01-22'
+                      name='startDate'
                       onChange={e => this.onChange(e)}
                       value={this.state.startDate}
                     />
                   </div>
-                  <div className="field">
+                  <div className='field'>
                     <label>{lang.endDate}</label>
                     <input
-                      type="date"
-                      min="2020-01-22"
-                      name="endDate"
+                      type='date'
+                      min='2020-01-22'
+                      name='endDate'
                       onChange={e => this.onChange(e)}
                       value={this.state.endDate}
                     />
@@ -530,13 +580,13 @@ export default class Country extends Component {
                 </div>
 
                 <div
-                  className="ui primary button"
+                  className='ui primary button'
                   onClick={e => this.onFilter(e)}
                 >
                   {lang.filter}
                 </div>
                 <button
-                  className="ui green button"
+                  className='ui green button'
                   onClick={() => this.onClearFilter()}
                   disabled={!filtered}
                 >

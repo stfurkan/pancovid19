@@ -346,6 +346,15 @@ export default class Main extends Component {
     let totalRecovered = 0;
     let totalDeaths = 0;
 
+    let lastDayConfirmed = 0;
+    let lastDayRecovered = 0;
+    let lastDayDeaths = 0;
+
+    // Get the day before the last day
+    let previousDay = new Date(lastDay);
+    previousDay.setDate(previousDay.getDate() - 1);
+    previousDay = previousDay.toISOString().split('T')[0];
+
     // Create CSV header for export
     let csvData = [[lang.country, lang.confirmed, lang.recovered, lang.deaths]];
 
@@ -353,11 +362,19 @@ export default class Main extends Component {
       let confirmed = 0;
       let recovered = 0;
       let deaths = 0;
+      let previousConfirmed = 0;
+      let previousRecovered = 0;
+      let previousDeaths = 0;
 
       // Get most up to date information for all the countries
       confirmed = celem.data[lastDay]['confirmed'];
       recovered = celem.data[lastDay]['recovered'];
       deaths = celem.data[lastDay]['deaths'];
+
+      // Get previous day's date information for all the countries
+      previousConfirmed = celem.data[previousDay]['confirmed'];
+      previousRecovered = celem.data[previousDay]['recovered'];
+      previousDeaths = celem.data[previousDay]['deaths'];
 
       // Get Turkish or English country names by browser's language
       let countryName;
@@ -373,6 +390,10 @@ export default class Main extends Component {
       totalConfirmed += confirmed;
       totalRecovered += recovered;
       totalDeaths += deaths;
+
+      lastDayConfirmed += confirmed - previousConfirmed;
+      lastDayRecovered += recovered - previousRecovered;
+      lastDayDeaths += deaths - previousDeaths;
     });
 
     // Process items for current table page items (10 per page default)
@@ -429,59 +450,95 @@ export default class Main extends Component {
 
           <div className='ui segment'>
             <div className='ui grid stackable'>
-              <div className='twelve wide column left aligned'>
-                <div className='ui segment raised'>
-                  <Map
-                    covidData={covidData}
-                    lang={lang}
-                    forecast={this.props.forecast}
-                  />
+              <div className='row ui segment raised'>
+                <div className='five wide column'>
+                  <h2 className='ui orange header'>
+                    <div className='content'>
+                      {lang.total} {lang.confirmed}
+                      <div className='sub header total-number'>
+                        {totalConfirmed.toLocaleString()}
+                      </div>
+                    </div>
+                  </h2>
+                </div>
+                <div className='six wide column'>
+                  <h2 className='ui green header'>
+                    <div className='content'>
+                      {lang.total} {lang.recovered}
+                      <div className='sub header total-number'>
+                        {totalRecovered.toLocaleString()}
+                      </div>
+                    </div>
+                  </h2>
+                </div>
+                <div className='five wide column'>
+                  <h2 className='ui red header'>
+                    <div className='content'>
+                      {lang.total} {lang.deaths}
+                      <div className='sub header total-number'>
+                        {totalDeaths.toLocaleString()}
+                      </div>
+                    </div>
+                  </h2>
                 </div>
               </div>
-              <div className='four wide column right aligned'>
-                <div className='ui segment raised general-data'>
-                  <div className='ui equal width center aligned padded grid container'>
-                    <div className='row'>
-                      <div className='column'>
-                        <div className='ui large header'>{lang.total}</div>
 
-                        <div className='ui fitted divider'></div>
+              <div className='row'>
+                <div className='twelve wide column left aligned'>
+                  <div className='ui segment raised'>
+                    <Map
+                      covidData={covidData}
+                      lang={lang}
+                      forecast={this.props.forecast}
+                    />
+                  </div>
+                </div>
+                <div className='four wide column right aligned'>
+                  <div className='ui placeholder segment raised general-data'>
+                    <div className='ui center aligned grid'>
+                      <div className='row general-data-row'>
+                        <div className='column'>
+                          <div className='ui medium blue header'>{lastDay}</div>
+                        </div>
                       </div>
-                    </div>
-                    <div className='row'>
-                      <div className='column'>
-                        <h2 className='ui orange header'>
-                          <div className='content'>
-                            {lang.confirmed}
-                            <div className='sub header total-number'>
-                              {totalConfirmed.toLocaleString()}
+
+                      <div className='row general-data-row'>
+                        <div className='column'>
+                          <div className='ui orange large header'>
+                            <div className='content'>
+                              {lang.new} {lang.confirmed}
+                              <div className='sub header total-number'>
+                                {lastDayConfirmed.toLocaleString()}
+                              </div>
                             </div>
                           </div>
-                        </h2>
+                        </div>
                       </div>
-                    </div>
-                    <div className='row'>
-                      <div className='column'>
-                        <h2 className='ui green header'>
-                          <div className='content'>
-                            {lang.recovered}
-                            <div className='sub header total-number'>
-                              {totalRecovered.toLocaleString()}
+
+                      <div className='row general-data-row'>
+                        <div className='column'>
+                          <div className='ui green large header'>
+                            <div className='content'>
+                              {lang.new} {lang.recovered}
+                              <div className='sub header total-number'>
+                                {lastDayRecovered.toLocaleString()}
+                              </div>
                             </div>
                           </div>
-                        </h2>
+                        </div>
                       </div>
-                    </div>
-                    <div className='row'>
-                      <div className='column'>
-                        <h2 className='ui red header'>
-                          <div className='content'>
-                            {lang.deaths}
-                            <div className='sub header total-number'>
-                              {totalDeaths.toLocaleString()}
+
+                      <div className='row'>
+                        <div className='column'>
+                          <div className='ui red large header'>
+                            <div className='content'>
+                              {lang.new} {lang.deaths}
+                              <div className='sub header total-number'>
+                                {lastDayDeaths.toLocaleString()}
+                              </div>
                             </div>
                           </div>
-                        </h2>
+                        </div>
                       </div>
                     </div>
                   </div>
