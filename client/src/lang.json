@@ -24,7 +24,8 @@
       "forecastWarningTitle": "ATTENTION",
       "forecastWarningText": "Forecast data is for only educational purposes and reliance on this data is strictly prohibited. Use this data at your own risk!",
       "forecastInformation": "This page currently includes the forecast for the next five days.",
-      "new": "New"
+      "new": "New",
+      "viewCountry": "View by country"
     },
     "countryPage": {
       "total": "Total",
@@ -118,7 +119,8 @@
       "forecastWarningTitle": "DİKKAT",
       "forecastWarningText": "Tahmin verileri eğitim amaçlıdır ve bu verilere hiçbir şekilde güvenmemelisiniz. Bu verileri kullanmak kendi sorumluluğunuzdadır!",
       "forecastInformation": "Bu sayfada şu anda önümüzdeki beş günün tahminleri bulunmaktadır.",
-      "new": "Yeni"
+      "new": "Yeni",
+      "viewCountry": "Ülkelere göre incele"
     },
     "countryPage": {
       "total": "Toplam",
