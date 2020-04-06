@@ -11,6 +11,8 @@ export default class Main extends Component {
   constructor(props) {
     super(props);
 
+    this.countryRef = React.createRef();
+
     const { covidData } = props;
 
     let lastDay;
@@ -80,6 +82,10 @@ export default class Main extends Component {
       }
     }
   }
+
+  scrollToCountryTable = () => {
+    window.scrollTo(0, this.countryRef.current.offsetTop);
+  };
 
   onChangePage = pageOfItems => {
     // update state with new page of items
@@ -461,7 +467,7 @@ export default class Main extends Component {
             <div className='ui grid stackable'>
               <div className='row'>
                 <div className='column'>
-                  <div className='ui segment raised'>
+                  <div className='ui segment raised general-data-row'>
                     <div className='ui grid stackable'>
                       <div className='row'>
                         <div className='five wide column'>
@@ -504,6 +510,13 @@ export default class Main extends Component {
                           </h2>
                         </div>
                       </div>
+                    </div>
+                    <div className='ui fitted divider'></div>
+                    <div
+                      className='ui green button'
+                      onClick={() => this.scrollToCountryTable()}
+                    >
+                      {lang.viewCountry}
                     </div>
                   </div>
                 </div>
@@ -607,7 +620,7 @@ export default class Main extends Component {
 
         <br />
 
-        <div>
+        <div ref={this.countryRef}>
           <table className='ui sortable unstackable celled table'>
             <thead>
               <tr>
