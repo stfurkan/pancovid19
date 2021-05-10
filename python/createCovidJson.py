@@ -193,6 +193,8 @@ readerConfirmed = csv.reader(confirmedCsv)
 for row in readerConfirmed:
     if row[0] == 'Province/State':
         pass
+    elif row[2] == '':
+        pass
     else:
         province = str(row[0])
         country = str(row[1])
